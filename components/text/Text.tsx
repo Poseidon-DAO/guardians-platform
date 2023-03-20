@@ -15,7 +15,7 @@ export function Text({
   if (HtmlElType === "text" || !HtmlElType) {
     return (
       <p
-        className={classes({ intent: HtmlElType, size, className, textColor })}
+        className={classes({ intent: HtmlElType, size, textColor, className })}
         {...props}
       >
         {children}
@@ -25,7 +25,7 @@ export function Text({
 
   return (
     <HtmlElType
-      className={classes({ intent: HtmlElType, size, className, textColor })}
+      className={classes({ intent: HtmlElType, size, textColor, className })}
       {...props}
     >
       {children}

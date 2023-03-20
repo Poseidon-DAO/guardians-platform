@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --sidebar-width: 26rem;
+}
+
 @layer base {
   html {
     font-family: Ubuntu;

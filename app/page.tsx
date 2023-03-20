@@ -1,11 +1,11 @@
-import { Text, ConnectButton } from "@/components";
+import { Text, ConnectButton, Header } from "@/components";
 import Image from "next/image";
 
 import hero from "../public/hero.png";
 
 export default function Index() {
   return (
-    <div className="w-full h-[92vh] relative">
+    <div className="w-full h-screen relative bg-background">
       <div className="container mx-auto h-full flex justify-between items-center">
         <div className="w-2/5">
           <div className="my-4">

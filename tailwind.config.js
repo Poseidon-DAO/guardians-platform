@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        "sidebar-width": "var(--sidebar-width)",
+      },
       colors: {
         blue: "#4923fc",
         purple: "#a291bf",

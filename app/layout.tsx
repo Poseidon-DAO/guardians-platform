@@ -1,5 +1,6 @@
-import "@/styles/globals.css";
 import { Header } from "@/components";
+import "@/styles/globals.css";
+
 import { Providers } from "./providers";
 
 export const metadata = {
@@ -11,7 +12,7 @@ interface IProps extends React.PropsWithChildren {}
 
 export default function RootLayout({ children }: IProps) {
   return (
-    <html lang="en" className="bg-background">
+    <html lang="en">
       <body>
         <Providers>
           <Header />
