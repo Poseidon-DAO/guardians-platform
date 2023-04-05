@@ -1,4 +1,4 @@
-import { Avatar, Card, SidebarLink } from "@/components";
+import { Avatar, SidebarLink } from "@/components";
 
 const links = [
   { id: "1", label: "Collection", icon: "Image", link: "/collection" },

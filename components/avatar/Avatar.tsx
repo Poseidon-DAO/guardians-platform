@@ -2,14 +2,35 @@
 
 import formatAddress from "@/utils/formatAddress";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 
-interface IProps extends React.PropsWithChildren {}
+const tooltipTexts = {
+  COPY: "Copy",
+  COPIED: "Copied!",
+};
 
-export function Avatar(props: IProps) {
+export function Avatar() {
   const { address } = useAccount();
+  const [tooltipText, setTooltipText] = useState(tooltipTexts.COPY);
+
+  useEffect(() => {
+    let timerId: NodeJS.Timeout;
+
+    if (tooltipText === tooltipTexts.COPIED) {
+      setTimeout(() => setTooltipText(tooltipTexts.COPY), 500);
+    }
+
+    return () => clearTimeout(timerId);
+  }, [tooltipText]);
+
+  function handleCopyAddress() {
+    if (!address) return;
+    navigator.clipboard.writeText(address);
+    setTooltipText(tooltipTexts.COPIED);
+  }
 
   return (
     <div className="flex flex-nowrap items-center">
@@ -31,11 +52,12 @@ export function Avatar(props: IProps) {
         >
           Unnamed Account
         </Text>
-        <Tooltip title="Copy">
+        <Tooltip title={tooltipText}>
           <Text
             textColor="indigo"
             className="font-extrabold hover:text-background/70 cursor-pointer"
             suppressHydrationWarning
+            onClick={handleCopyAddress}
           >
             {formatAddress(address!)}
           </Text>

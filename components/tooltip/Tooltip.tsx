@@ -1,19 +1,19 @@
-"use client";
+import { tooltipClasses, arrowClasses, VariantProps } from "./Tooltip.styles";
 
-interface IProps extends React.PropsWithChildren {
+interface IProps extends React.PropsWithChildren, VariantProps {
   title?: string;
+  className?: string;
 }
 
-export function Tooltip({ children, title }: IProps) {
+export function Tooltip({ children, title, position, className }: IProps) {
   return (
-    <div className="group relative inline-block border-red border-2">
+    <div className="group inline-block relative">
       {children}
 
-      {title && (
-        <span className="invisible group-hover:visible bg-background/90 text-white px-5 py-2 mt-2 rounded-lg absolute top-full left-2/4">
-          {title}
-        </span>
-      )}
+      <div className={tooltipClasses({ className, position })}>
+        {title}
+        <div className={arrowClasses({ className, position })} />
+      </div>
     </div>
   );
 }
