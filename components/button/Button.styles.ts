@@ -2,43 +2,58 @@ import { cva, VariantProps as CvaVariantProps } from "class-variance-authority";
 
 export const classes = cva(
   [
-    "rounded-3xl",
+    "rounded-lg",
     "font-bold",
-    "hover:scale-110",
     "active:scale-100",
     "transition",
-    "duration-200",
+    "duration-100",
     "ease-in-out",
+    "border-2",
+    "hover:scale-[1.02]",
   ],
   {
     variants: {
       intent: {
-        primary: [
-          "bg-violet-500",
-          "text-white",
-          "border-transparent",
-          "hover:bg-violet-600",
-        ],
-        secondary: [
-          "bg-white",
-          "text-black",
-          "border-gray-400",
-          "hover:bg-gray-100",
-          "border-solid",
-          "border-2",
-          "border-gray-800",
-        ],
-        text: ["bg-transparent", "text-black", "hover:bg-gray-100"],
+        contained: "text-white border-transparent",
+        outline: ["bg-white", "hover:bg-gray-100"],
+        text: ["bg-transparent", "hover:bg-gray-200", "border-transparent"],
       },
       size: {
         small: ["text-md", "py-1", "px-2"],
         medium: ["text-lg", "px-6", "py-2"],
         large: ["text-xlg", "px-8", "py-4"],
       },
+      colorScheme: {
+        blue: "text-blue",
+        red: "text-red",
+      },
     },
+    compoundVariants: [
+      {
+        intent: "contained",
+        colorScheme: "blue",
+        className: "bg-blue hover:bg-blue/90",
+      },
+      {
+        intent: "outline",
+        colorScheme: "blue",
+        className: "border-blue",
+      },
+      {
+        intent: "contained",
+        colorScheme: "red",
+        className: "bg-red hover:bg-red/90",
+      },
+      {
+        intent: "outline",
+        colorScheme: "red",
+        className: "border-red",
+      },
+    ],
     defaultVariants: {
-      intent: "primary",
+      intent: "contained",
       size: "medium",
+      colorScheme: "red",
     },
   }
 );

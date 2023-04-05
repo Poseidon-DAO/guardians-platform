@@ -7,12 +7,16 @@ interface IProps
 export function Button({
   intent,
   size,
+  colorScheme,
   className,
   children,
   ...props
 }: IProps) {
   return (
-    <button className={classes({ intent, size, className })} {...props}>
+    <button
+      className={classes({ intent, size, colorScheme, className })}
+      {...props}
+    >
       {children}
     </button>
   );

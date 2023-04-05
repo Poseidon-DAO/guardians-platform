@@ -4,6 +4,7 @@ import formatAddress from "@/utils/formatAddress";
 import Image from "next/image";
 import { useAccount } from "wagmi";
 import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 
 interface IProps extends React.PropsWithChildren {}
 
@@ -21,18 +22,24 @@ export function Avatar(props: IProps) {
         />
       </div>
 
-      <div className="ml-3 w-4/6">
+      <div className="ml-3 w-4/6 ">
         <Text
           intent="h4"
-          textColor="black"
+          textColor="indigo"
           className="text-ellipsis overflow-hidden whitespace-nowrap"
           title="Unnamed Account"
         >
           Unnamed Account
         </Text>
-        <Text textColor="black" className="font-extrabold">
-          {formatAddress(address as string)}
-        </Text>
+        <Tooltip title="Copy">
+          <Text
+            textColor="indigo"
+            className="font-extrabold hover:text-background/70 cursor-pointer"
+            suppressHydrationWarning
+          >
+            {formatAddress(address!)}
+          </Text>
+        </Tooltip>
       </div>
     </div>
   );

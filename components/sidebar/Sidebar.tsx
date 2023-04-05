@@ -19,19 +19,17 @@ const links = [
 
 export function Sidebar() {
   return (
-    <div className="w-sidebar-width h-[90vh] fixed t-0 l-0 pb-[2vh] pr-8 box-border overflow-x-hidden ">
-      <Card className="h-full box-border">
-        <div className="h-full flex flex-col justify-center p-2 pt-0">
-          <div className="pt-6">
-            <Avatar />
-          </div>
-          <div className="h-[20vh]"></div>
-
-          {links.map(({ id, ...link }) => (
-            <SidebarLink key={id} link={link} />
-          ))}
+    <div className="w-sidebar-width h-[92vh] fixed box-border overflow-x-hidden">
+      <div className="h-full flex flex-col justify-center p-8 border-r-[0.5px] border-gray-400">
+        <div className="pt-6">
+          <Avatar />
         </div>
-      </Card>
+        <div className="h-[20vh]"></div>
+
+        {links.map(({ id, ...link }) => (
+          <SidebarLink key={id} link={link} />
+        ))}
+      </div>
     </div>
   );
 }

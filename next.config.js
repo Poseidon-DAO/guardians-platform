@@ -4,7 +4,14 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["cdn.mos.cms.futurecdn.net", "thumbor.forbes.com"],
+    remotePatterns: [
+      {
+        hostname: "thumbor.forbes.com",
+      },
+      {
+        hostname: "ipfs.pixura.io",
+      },
+    ],
   },
 };
 

@@ -4,10 +4,6 @@ import { useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 
-export const useBrowserLayoutEffect = process.browser
-  ? useLayoutEffect
-  : () => {};
-
 export function AuthRedirect() {
   const { isConnected } = useAccount();
   const { replace } = useRouter();
