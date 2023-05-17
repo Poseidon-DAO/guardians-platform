@@ -2,7 +2,7 @@ import { Button } from "../button";
 
 interface IProps extends React.PropsWithChildren {}
 
-export function VoteControls(props: IProps) {
+export default function VoteControls(props: IProps) {
   return (
     <div className="flex my-4">
       <div className="mr-2">

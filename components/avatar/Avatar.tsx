@@ -12,7 +12,7 @@ const tooltipTexts = {
   COPIED: "Copied!",
 };
 
-export function Avatar() {
+export default function Avatar() {
   const { address } = useAccount();
   const [tooltipText, setTooltipText] = useState(tooltipTexts.COPY);
 

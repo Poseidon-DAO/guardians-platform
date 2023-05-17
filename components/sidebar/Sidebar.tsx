@@ -17,7 +17,7 @@ const links = [
   },
 ];
 
-export function Sidebar() {
+export default function Sidebar() {
   return (
     <div className="w-sidebar-width h-[92vh] fixed box-border overflow-x-hidden">
       <div className="h-full flex flex-col justify-center p-8 border-r-[0.5px] border-gray-400">

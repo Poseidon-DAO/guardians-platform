@@ -1,1 +1,1 @@
-export * from "./ConnectButton";
+export { default as ConnectButton } from "./ConnectButton";

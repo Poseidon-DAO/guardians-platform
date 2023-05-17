@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 interface IProps extends React.PropsWithChildren {}
 
-export function HeaderWrapper({ children }: IProps) {
+export default function HeaderWrapper({ children }: IProps) {
   const pathname = usePathname();
 
   return (

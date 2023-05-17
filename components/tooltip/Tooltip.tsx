@@ -5,7 +5,12 @@ interface IProps extends React.PropsWithChildren, VariantProps {
   className?: string;
 }
 
-export function Tooltip({ children, title, position, className }: IProps) {
+export default function Tooltip({
+  children,
+  title,
+  position,
+  className,
+}: IProps) {
   return (
     <div className="group inline-block relative">
       {children}

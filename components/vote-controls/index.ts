@@ -1,1 +1,1 @@
-export * from "./VoteControls";
+export { default as VoteControls } from "./VoteControls";

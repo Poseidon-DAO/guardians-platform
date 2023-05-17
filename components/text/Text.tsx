@@ -4,7 +4,7 @@ interface IProps
   extends React.HTMLAttributes<HTMLHeadElement | HTMLParagraphElement>,
     VariantProps {}
 
-export function Text({
+export default function Text({
   children,
   intent: HtmlElType,
   size,

@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 
-export function AuthRedirect() {
+export default function AuthRedirect() {
   const { isConnected } = useAccount();
   const { replace } = useRouter();
 

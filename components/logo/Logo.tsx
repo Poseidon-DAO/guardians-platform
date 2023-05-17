@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import logo from "../../public/logo-transparent.png";
 
-export function Logo() {
+export default function Logo() {
   const router = useRouter();
 
   return (

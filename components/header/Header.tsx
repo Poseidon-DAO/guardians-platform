@@ -1,9 +1,10 @@
 import { ConnectButton, Logo } from "@/components";
-import { HeaderWrapper } from "./HeaderWrapper";
 
-export function Header() {
+import HeaderWrapper from "./HeaderWrapper";
+
+export default function Header() {
   return (
-    <header className="w-full fixed bg-blue z-10">
+    <header className="w-full fixed bg-blue z-[1]">
       <HeaderWrapper>
         <Logo />
 

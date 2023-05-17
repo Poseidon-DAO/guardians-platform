@@ -3,10 +3,10 @@
 import { ConnectButton as RainbowConnectButton } from "@rainbow-me/rainbowkit";
 import { AuthRedirect } from "../auth-redirect";
 
-export function ConnectButton() {
+export default function ConnectButton() {
   return (
     <>
-      <AuthRedirect />
+      {/* <AuthRedirect /> */}
       <RainbowConnectButton />
     </>
   );

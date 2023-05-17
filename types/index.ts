@@ -17,3 +17,8 @@ export type Collection = {
   tags: string[];
   timeLastUpdated: Date;
 };
+
+export interface CustomNextPage {
+  params: { your_dynamic_prop_here: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}

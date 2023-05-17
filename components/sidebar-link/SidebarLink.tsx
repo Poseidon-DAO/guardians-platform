@@ -23,7 +23,7 @@ interface IProps {
   };
 }
 
-export function SidebarLink({ link }: IProps) {
+export default function SidebarLink({ link }: IProps) {
   const pathname = usePathname();
   let isActive = false;
 
@@ -37,7 +37,7 @@ export function SidebarLink({ link }: IProps) {
     <Link
       href={link.link}
       className={clsx(
-        "w-full flex items-center p-2 rounded-lg my-1 text-background hover:bg-blue hover:text-white",
+        "w-full flex items-center p-2 rounded-lg my-1 hover:bg-blue hover:text-white",
         isActive && "bg-blue text-white"
       )}
     >

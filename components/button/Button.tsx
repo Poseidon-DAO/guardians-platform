@@ -4,7 +4,7 @@ interface IProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps {}
 
-export function Button({
+export default function Button({
   intent,
   size,
   colorScheme,

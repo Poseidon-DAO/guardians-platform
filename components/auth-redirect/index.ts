@@ -1,1 +1,1 @@
-export * from "./AuthRedirect";
+export { default as AuthRedirect } from "./AuthRedirect";

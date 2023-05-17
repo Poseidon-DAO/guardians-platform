@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Collection } from "@/types";
 
-import { Card } from "../card";
-import { VoteControls } from "../vote-controls";
-import { Text } from "../text";
+import { Card } from "../../card";
+import { VoteControls } from "../../vote-controls";
+import { Text } from "../../text";
 
 interface IProps extends React.PropsWithChildren, Collection {}
 
-export function CollectionItem({
+export default function Item({
   id,
   image,
   description,

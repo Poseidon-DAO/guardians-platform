@@ -1,11 +1,8 @@
-"use client";
-
 export * from "./auth-redirect";
 export * from "./avatar";
 export * from "./button";
 export * from "./card";
-export * from "./collection-grid";
-export * from "./collection-item";
+
 export * from "./connect-button";
 export * from "./header";
 export * from "./logo";
