@@ -4,10 +4,7 @@ import { ShowMyVotes } from "../show-my-votes";
 import { SortSelect } from "../sort-select";
 import { ViewToggle } from "../view-toggle";
 
-export type SortType = "most-voted" | "most-loved" | "most-hated";
-
 interface IProps extends React.PropsWithChildren {
-  // sort?: SortType;
   className?: string;
 }
 

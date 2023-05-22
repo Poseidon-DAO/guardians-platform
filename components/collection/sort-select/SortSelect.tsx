@@ -11,8 +11,8 @@ import {
   PRICE_OPTIONS,
   QUERY_KEY,
   TIME_OPTIONS,
-} from "@/app/constants/collection/filters/sort";
-import { createQueryString } from "@/app/utils/url";
+} from "@/constants/collection/filters/sort";
+import { createQueryString } from "@/utils/utils/url";
 
 interface IProps extends React.PropsWithChildren {
   className?: string;

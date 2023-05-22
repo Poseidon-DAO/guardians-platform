@@ -20,7 +20,7 @@ module.exports = {
         text: "#fff",
         black: "#000",
         transparent: "transparent",
-        line: "rgba(255, 255, 255, 0.4)",
+        line: "zinc-100",
       },
     },
     fontFamily: {

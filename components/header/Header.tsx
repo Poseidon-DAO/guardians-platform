@@ -4,7 +4,7 @@ import HeaderWrapper from "./HeaderWrapper";
 
 export default function Header() {
   return (
-    <header className="w-full fixed bg-blue z-[1]">
+    <header className="w-full fixed bg-blue z-50">
       <HeaderWrapper>
         <Logo />
 

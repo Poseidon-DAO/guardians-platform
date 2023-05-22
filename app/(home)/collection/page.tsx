@@ -1,4 +1,4 @@
-import { Grid, Header } from "@/components/collection";
+import { Container, Header } from "@/components/collection";
 import { type Collection, type CustomNextPage } from "@/types";
 
 const baseUrl = process.env.PDN_API_BASE_URL!;
@@ -28,7 +28,7 @@ export default async function Collection({ searchParams }: CustomNextPage) {
   return (
     <div className="w-full min-h-screen p-8">
       <Header />
-      <Grid collection={collection} />
+      <Container collection={collection} />
     </div>
   );
 }

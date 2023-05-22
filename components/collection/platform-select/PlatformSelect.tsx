@@ -6,11 +6,8 @@ import { forwardRef, useState } from "react";
 import { Check, ChevronDown, ChevronUp } from "react-feather";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import {
-  OPTIONS,
-  QUERY_KEY,
-} from "@/app/constants/collection/filters/platform";
-import { createQueryString } from "@/app/utils/url";
+import { OPTIONS, QUERY_KEY } from "@/constants/collection/filters/platform";
+import { createQueryString } from "@/utils/utils/url";
 
 interface IProps extends React.PropsWithChildren {
   className?: string;

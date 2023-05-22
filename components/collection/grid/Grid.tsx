@@ -1,18 +1,21 @@
-import { Collection } from "@/types";
+import { type Collection } from "@/types";
+import clsx from "clsx";
 
 import Item from "../item/Item";
 
 interface IProps extends React.PropsWithChildren {
   collection: Collection[];
+  layout?: "column" | "grid";
 }
 
-export default function Grid({ collection }: IProps) {
-  if (!collection.length) {
-    return <div>NO DATA</div>;
-  }
-
+export default function Grid({ collection, layout = "grid" }: IProps) {
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div
+      className={clsx(
+        "grid grid-cols-${cols} gap-6",
+        layout === "grid" ? "grid-cols-3" : "grid-cols-2"
+      )}
+    >
       {collection.map((collection) => (
         <Item key={collection.id} {...collection} />
       ))}
