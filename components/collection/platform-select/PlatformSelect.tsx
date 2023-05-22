@@ -2,69 +2,40 @@
 
 import * as Select from "@radix-ui/react-select";
 import clsx from "clsx";
-import { forwardRef, useCallback, useState } from "react";
+import { forwardRef, useState } from "react";
 import { Check, ChevronDown, ChevronUp } from "react-feather";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+import {
+  OPTIONS,
+  QUERY_KEY,
+} from "@/app/constants/collection/filters/platform";
+import { createQueryString } from "@/app/utils/url";
 
 interface IProps extends React.PropsWithChildren {
   className?: string;
 }
-
-const options = [
-  {
-    value: "",
-    label: "All",
-  },
-  {
-    value: "superrare",
-    label: "SuperRare",
-  },
-  {
-    value: "foundation",
-    label: "Foundation",
-  },
-  {
-    value: "nifty-gateway",
-    label: "Nifty Gateway",
-  },
-  {
-    value: "opensea",
-    label: "OpenSea",
-  },
-];
 
 export default function PlatformSelect(props: IProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [platform, setPlatform] = useState(
-    options.find((o) => o.label === "All")?.value
-  );
+  const options = OPTIONS;
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
+  const initialPlatformValue =
+    searchParams.get(QUERY_KEY) || options.find((o) => o.value === "")?.value;
 
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const [platform, setPlatform] = useState(initialPlatformValue);
 
   function handleValueChange(value: string) {
-    console.log("changed");
     setPlatform(value);
-
-    if (!platform) return;
-
-    const url = pathname + "?" + createQueryString("platfrom", platform);
-    router.push(url);
-    router.refresh();
-    router.replace(url);
+    const url =
+      pathname +
+      "?" +
+      createQueryString(searchParams, { name: QUERY_KEY, value });
+    router.push(!value ? pathname : url);
   }
-
-  console.log({ platform, searchParams });
 
   return (
     <Select.Root value={platform} onValueChange={handleValueChange}>
@@ -120,12 +91,11 @@ const SelectItem = forwardRef<HTMLDivElement | null, Props>(
     return (
       <Select.Item
         className={clsx(
-          "leading-none rounded-lg flex items-center py-3 pl-[25px] relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue data-[highlighted]:text-white",
+          "leading-none rounded-lg flex items-center py-3 pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue data-[highlighted]:text-white",
           className
         )}
         {...props}
         ref={forwardedRef}
-        onClick={() => console.log("clicked")}
       >
         <Select.ItemText>{children}</Select.ItemText>
         <Select.ItemIndicator className="absolute left-0 w-[25px] inline-flex items-center justify-center">

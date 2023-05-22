@@ -7,11 +7,11 @@ import { ViewToggle } from "../view-toggle";
 export type SortType = "most-voted" | "most-loved" | "most-hated";
 
 interface IProps extends React.PropsWithChildren {
-  sort?: SortType;
+  // sort?: SortType;
   className?: string;
 }
 
-export default function Header({ sort }: IProps) {
+export default function Header(props: IProps) {
   return (
     <div className="grid grid-cols-12 gap-6 mb-6">
       <div className="w-full h-12 col-span-2 items-center">
@@ -27,7 +27,7 @@ export default function Header({ sort }: IProps) {
       </div>
 
       <div className="w-full h-12 col-span-2">
-        <SortSelect sort={sort} />
+        <SortSelect />
       </div>
 
       <div className="w-full h-12 col-span-2">

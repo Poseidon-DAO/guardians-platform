@@ -1,25 +1,53 @@
 "use client";
 
 import * as Select from "@radix-ui/react-select";
-import React from "react";
 import clsx from "clsx";
+import { forwardRef, useState } from "react";
 import { Check, ChevronDown, ChevronUp } from "react-feather";
 
-import { type SortType } from "../header/Header";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  POPULARITY_OPTIONS,
+  PRICE_OPTIONS,
+  QUERY_KEY,
+  TIME_OPTIONS,
+} from "@/app/constants/collection/filters/sort";
+import { createQueryString } from "@/app/utils/url";
 
 interface IProps extends React.PropsWithChildren {
-  sort?: SortType;
   className?: string;
 }
 
 export default function SortSelect(props: IProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const popularityOptions = POPULARITY_OPTIONS;
+  const priceOptions = PRICE_OPTIONS;
+  const timeOptions = TIME_OPTIONS;
+
+  const initialSortValue = searchParams.get(QUERY_KEY) || undefined;
+
+  const [sort, setSort] = useState(initialSortValue);
+
+  function handleValueChange(value: string) {
+    setSort(value);
+    const url =
+      pathname +
+      "?" +
+      createQueryString(searchParams, { name: QUERY_KEY, value });
+    router.push(!value ? pathname : url);
+  }
+
   return (
-    <Select.Root>
+    <Select.Root value={sort} onValueChange={handleValueChange}>
       <Select.Trigger
         className="input w-full h-full inline-flex items-center justify-between rounded-lg px-[15px] relative"
         aria-label="Sort"
       >
-        <Select.Value placeholder="Sort by" />
+        <Select.Value placeholder="Sort by" aria-label={sort} />
+
         <Select.Icon>
           <ChevronDown />
         </Select.Icon>
@@ -40,9 +68,16 @@ export default function SortSelect(props: IProps) {
               <Select.Label className="px-[25px] text-xs py-2 leading-[25px] text-background/60">
                 Popularity
               </Select.Label>
-              <SelectItem value="most-voted">Most voted</SelectItem>
-              <SelectItem value="most-loved">Most loved</SelectItem>
-              <SelectItem value="most-hated">Most hated</SelectItem>
+              {popularityOptions.map(({ label, value, disabled }) => (
+                <SelectItem
+                  key={label}
+                  value={value}
+                  disabled={disabled}
+                  className="data-[disabled]:text-purple"
+                >
+                  {label}
+                </SelectItem>
+              ))}
             </Select.Group>
 
             <Select.Separator className="h-[1px] bg-background/20 m-[5px]" />
@@ -51,8 +86,16 @@ export default function SortSelect(props: IProps) {
               <Select.Label className="px-[25px] text-xs py-2 leading-[25px] text-background/60">
                 Price
               </Select.Label>
-              <SelectItem value="desc">High to low</SelectItem>
-              <SelectItem value="asc">Low to high</SelectItem>
+              {priceOptions.map(({ label, value, disabled }) => (
+                <SelectItem
+                  key={label}
+                  value={value}
+                  disabled={disabled}
+                  className="data-[disabled]:text-purple"
+                >
+                  {label}
+                </SelectItem>
+              ))}
             </Select.Group>
 
             <Select.Separator className="h-[1px] bg-background/20 m-[5px]" />
@@ -61,8 +104,16 @@ export default function SortSelect(props: IProps) {
               <Select.Label className="px-[25px] text-xs py-2 leading-[25px] text-background/60">
                 Time bought
               </Select.Label>
-              <SelectItem value="recently">Recently</SelectItem>
-              <SelectItem value="oldest">Oldest</SelectItem>
+              {timeOptions.map(({ label, value, disabled }) => (
+                <SelectItem
+                  key={label}
+                  value={value}
+                  disabled={disabled}
+                  className="data-[disabled]:text-purple"
+                >
+                  {label}
+                </SelectItem>
+              ))}
             </Select.Group>
           </Select.Viewport>
 
@@ -81,12 +132,12 @@ interface Props extends React.PropsWithChildren {
   disabled?: boolean;
 }
 
-const SelectItem = React.forwardRef<HTMLDivElement | null, Props>(
+const SelectItem = forwardRef<HTMLDivElement | null, Props>(
   ({ children, className, ...props }, forwardedRef) => {
     return (
       <Select.Item
         className={clsx(
-          "leading-none rounded-lg flex items-center py-3 pr-14 pl-[25px] relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue data-[highlighted]:text-white",
+          "leading-none rounded-lg flex items-center py-3 pr-14 pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue data-[highlighted]:text-white",
           className
         )}
         {...props}

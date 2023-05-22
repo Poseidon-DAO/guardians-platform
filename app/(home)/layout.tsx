@@ -10,7 +10,7 @@ export default function HomeLayout({ children }: IProps) {
           <Sidebar />
         </div>
 
-        <div className="ml-[length:var(--sidebar-width)]">{children}</div>
+        <div className="ml-[var(--sidebar-width)]">{children}</div>
       </div>
     </div>
   );

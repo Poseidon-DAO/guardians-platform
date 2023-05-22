@@ -1,5 +1,4 @@
 import { Grid, Header } from "@/components/collection";
-import { type SortType } from "@/components/collection/header/Header";
 import { type Collection, type CustomNextPage } from "@/types";
 
 const baseUrl = process.env.PDN_API_BASE_URL!;
@@ -18,11 +17,8 @@ async function getCollection(searchParams: CustomNextPage["searchParams"]) {
   });
 
   const res = await fetch(url.toString());
-
   if (!res.ok) throw new Error(res.statusText);
-
   const collection = (await res.json()) as Collection[];
-
   return collection;
 }
 
@@ -31,7 +27,7 @@ export default async function Collection({ searchParams }: CustomNextPage) {
 
   return (
     <div className="w-full min-h-screen p-8">
-      <Header sort={(searchParams?.sort as SortType) || undefined} />
+      <Header />
       <Grid collection={collection} />
     </div>
   );
