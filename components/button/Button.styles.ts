@@ -26,6 +26,7 @@ export const classes = cva(
       colorScheme: {
         blue: "text-blue",
         red: "text-red",
+        indigo: "text-background",
       },
     },
     compoundVariants: [
@@ -48,6 +49,16 @@ export const classes = cva(
         intent: "outline",
         colorScheme: "red",
         className: "border-red",
+      },
+      {
+        intent: "contained",
+        colorScheme: "indigo",
+        className: "bg-background hover:bg-background/90",
+      },
+      {
+        intent: "outline",
+        colorScheme: "indigo",
+        className: "border-background",
       },
     ],
     defaultVariants: {

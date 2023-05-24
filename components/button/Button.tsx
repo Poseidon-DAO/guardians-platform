@@ -14,7 +14,7 @@ export default function Button({
 }: IProps) {
   return (
     <button
-      className={classes({ intent, size, colorScheme, className })}
+      className={classes({ className, intent, size, colorScheme })}
       {...props}
     >
       {children}

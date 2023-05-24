@@ -6,6 +6,7 @@ export * from "./card";
 export * from "./connect-button";
 export * from "./header";
 export * from "./logo";
+export * from "./pagination";
 export * from "./sidebar";
 export * from "./sidebar-link";
 export * from "./text";

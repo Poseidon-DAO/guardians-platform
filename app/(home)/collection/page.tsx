@@ -1,7 +1,10 @@
+import { Pagination } from "@/components";
 import { Container, Header } from "@/components/collection";
-import { UserSettings, type Collection, type CustomNextPage } from "@/types";
+import type { UserSettings, Collection, CustomNextPage } from "@/types";
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
+
+let userId = "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c";
 
 async function getCollection(searchParams: CustomNextPage["searchParams"]) {
   const url = new URL("/collection", baseUrl);
@@ -16,10 +19,17 @@ async function getCollection(searchParams: CustomNextPage["searchParams"]) {
     }
   });
 
+  url.searchParams.append("userId", userId);
+
   const res = await fetch(url.toString());
 
   if (!res.ok) throw new Error(res.statusText);
-  const collection = (await res.json()).collection as Collection[];
+  const collection = (await res.json()) as {
+    collection: Collection[];
+    pageCount: number;
+    pageSize: number;
+    totalCount: number;
+  };
 
   return collection;
 }
@@ -37,15 +47,24 @@ async function getUserSettings(userId: string) {
 }
 
 export default async function Collection({ searchParams }: CustomNextPage) {
-  const collection = await getCollection(searchParams);
-  const settings = await getUserSettings(
-    "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c"
+  const { collection, pageSize, totalCount } = await getCollection(
+    searchParams
   );
+  const settings = await getUserSettings(userId);
 
   return (
-    <div className="w-full min-h-screen p-8">
+    <div className="w-full min-h-[92vh] px-8 py-6 flex flex-col justify-between">
       <Header settings={settings} />
-      <Container collection={collection} layout={settings.collectionLayout} />
+
+      <div className="flex-1">
+        <Container collection={collection} layout={settings.collectionLayout} />
+      </div>
+
+      <Pagination
+        page={Number(searchParams["page"]) || 1}
+        totalCount={totalCount}
+        pageSize={pageSize}
+      />
     </div>
   );
 }
