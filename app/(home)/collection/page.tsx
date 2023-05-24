@@ -1,6 +1,5 @@
 import { Container, Header } from "@/components/collection";
 import { UserSettings, type Collection, type CustomNextPage } from "@/types";
-import { Suspense } from "react";
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 

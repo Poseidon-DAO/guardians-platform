@@ -2,8 +2,8 @@
 
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { List, Columns, Grid } from "react-feather";
-import { type UiState, useUiStore } from "@/zustand/ui";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface IProps extends React.PropsWithChildren {
   layout: LayoutTypes;
@@ -19,11 +19,12 @@ const toggleGroupItemClasses =
 
 export default function ViewToggle({ layout }: IProps) {
   const router = useRouter();
-  const collectionLayout = useUiStore((state) => state.collectionLayout);
-  const setCollectionLayout = useUiStore((state) => state.setCollectionLayout);
 
-  async function handleLayoutChange(value: string) {
+  const [localLayout, setLocalLayout] = useState(layout);
+
+  async function handleLayoutChange(value: LayoutTypes) {
     if (!!value) {
+      setLocalLayout(value);
       const url = new URL("/user/settings", baseUrl);
 
       const res = await fetch(url.toString(), {
@@ -51,7 +52,7 @@ export default function ViewToggle({ layout }: IProps) {
       className="input h-full w-full inline-flex items-center"
       type="single"
       aria-label="Collection alignment"
-      value={layout}
+      value={localLayout}
       onValueChange={handleLayoutChange}
     >
       <ToggleGroup.Item
