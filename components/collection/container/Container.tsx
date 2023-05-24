@@ -1,25 +1,22 @@
-"use client";
-
 import { type Collection } from "@/types";
-import { useUiStore } from "@/zustand/ui";
 
-import Grid from "../grid/Grid";
+import { Grid } from "../grid";
 import { Table } from "../table";
+import { type LayoutTypes } from "../view-toggle/ViewToggle";
 
 interface IProps extends React.PropsWithChildren {
   collection: Collection[];
+  layout: LayoutTypes;
 }
 
-export default function Container({ collection, children }: IProps) {
-  const collectionLayout = useUiStore((state) => state.collectionLayout);
-
+export default function Container({ collection, layout }: IProps) {
   if (!collection.length) {
     return <div>NO DATA</div>;
   }
 
-  if (collectionLayout === "table") {
+  if (layout === "table") {
     return <Table collection={collection} />;
   }
 
-  return <Grid collection={collection} layout={collectionLayout} />;
+  return <Grid collection={collection} layout={layout} />;
 }

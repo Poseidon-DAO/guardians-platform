@@ -1,4 +1,4 @@
-export const QUERY_KEY = "sorting";
+export const QUERY_KEY = "sort";
 
 export const POPULARITY_OPTIONS = [
   {

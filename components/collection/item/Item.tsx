@@ -36,7 +36,7 @@ export default function Item({
         </div>
       </Card>
 
-      <VoteControls />
+      <VoteControls collectionId={id} />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { Container, Header } from "@/components/collection";
-import { type Collection, type CustomNextPage } from "@/types";
+import { UserSettings, type Collection, type CustomNextPage } from "@/types";
+import { Suspense } from "react";
 
-const baseUrl = process.env.PDN_API_BASE_URL!;
+const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
 async function getCollection(searchParams: CustomNextPage["searchParams"]) {
   const url = new URL("/collection", baseUrl);
@@ -17,18 +18,35 @@ async function getCollection(searchParams: CustomNextPage["searchParams"]) {
   });
 
   const res = await fetch(url.toString());
+
   if (!res.ok) throw new Error(res.statusText);
-  const collection = (await res.json()) as Collection[];
+  const collection = (await res.json()).collection as Collection[];
+
   return collection;
+}
+
+async function getUserSettings(userId: string) {
+  const url = new URL("/user/settings", baseUrl);
+
+  url.searchParams.append("userId", userId);
+
+  const res = await fetch(url.toString(), { cache: "no-cache" });
+  if (!res.ok) throw new Error(res.statusText);
+  const settings = (await res.json()) as UserSettings;
+
+  return settings;
 }
 
 export default async function Collection({ searchParams }: CustomNextPage) {
   const collection = await getCollection(searchParams);
+  const settings = await getUserSettings(
+    "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c"
+  );
 
   return (
     <div className="w-full min-h-screen p-8">
-      <Header />
-      <Container collection={collection} />
+      <Header settings={settings} />
+      <Container collection={collection} layout={settings.collectionLayout} />
     </div>
   );
 }

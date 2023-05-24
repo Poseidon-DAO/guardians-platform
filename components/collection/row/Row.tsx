@@ -27,7 +27,7 @@ export default function Row({
       <Text className="w-1/4 text-left">{title}</Text>
       <Text className="w-1/4 text-left">{createdBy}</Text>
 
-      <VoteControls size="small" />
+      <VoteControls collectionId={id} size="small" />
     </div>
   );
 }

@@ -18,6 +18,16 @@ export type Collection = {
   timeLastUpdated: Date;
 };
 
+export type UserSettings = {
+  id: number;
+  userId: string;
+  theme: string;
+  collectionLayout: "table" | "column" | "grid";
+  showVotedCollection: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export interface CustomNextPage {
   params: { your_dynamic_prop_here: string };
   searchParams: { [key: string]: string | string[] | undefined };
