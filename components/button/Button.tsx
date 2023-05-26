@@ -1,7 +1,8 @@
+import clsx from "clsx";
 import { classes, VariantProps } from "./Button.styles";
 
 interface IProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "disabled">,
     VariantProps {}
 
 export default function Button({
@@ -10,14 +11,23 @@ export default function Button({
   colorScheme,
   className,
   children,
+  disabled,
   ...props
 }: IProps) {
   return (
-    <button
-      className={classes({ className, intent, size, colorScheme })}
-      {...props}
-    >
-      {children}
-    </button>
+    <span className={clsx(null, disabled && "cursor-not-allowed")}>
+      <button
+        className={classes({
+          className,
+          intent,
+          size,
+          colorScheme,
+          disabled,
+        })}
+        {...props}
+      >
+        {children}
+      </button>
+    </span>
   );
 }

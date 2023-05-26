@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { ChevronLeft, ChevronRight } from "react-feather";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 import { Button } from "@/components";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -41,6 +41,8 @@ export default function Pagination({
   });
 
   async function handleLayoutChange(value: string) {
+    if (!value) return;
+
     setCurrentPage(+value);
 
     const url =
@@ -54,7 +56,7 @@ export default function Pagination({
     return null;
   }
 
-  let lastPage = paginationItems[paginationItems.length - 1];
+  const lastPage = paginationItems[paginationItems.length - 1];
 
   return (
     <div className="text-center pt-6">
@@ -63,6 +65,7 @@ export default function Pagination({
           intent="text"
           colorScheme="indigo"
           className="rounded-r-none bg-white mr-[2px]"
+          disabled={currentPage === 1}
         >
           <ChevronLeft />
         </Button>
@@ -75,17 +78,20 @@ export default function Pagination({
           onValueChange={handleLayoutChange}
         >
           {paginationItems.map((item, index) => {
+            const itemValue = item === 0 ? "..." : item;
+
             return (
               <ToggleGroup.Item
-                key={+item + index}
+                key={index}
                 className={[
                   toggleGroupItemClasses,
                   "mx-[1px] first:ml-0 last:mr-0",
                 ].join(" ")}
-                value={item.toString()}
+                value={itemValue.toString()}
                 aria-label="Table view"
+                disabled={item === 0}
               >
-                {item}
+                {itemValue}
               </ToggleGroup.Item>
             );
           })}
@@ -95,6 +101,7 @@ export default function Pagination({
           intent="text"
           colorScheme="indigo"
           className="rounded-l-none bg-white ml-[2px]"
+          disabled={lastPage === currentPage}
         >
           <ChevronRight />
         </Button>

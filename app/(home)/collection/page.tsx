@@ -21,6 +21,10 @@ async function getCollection(searchParams: CustomNextPage["searchParams"]) {
 
   url.searchParams.append("userId", userId);
 
+  await new Promise((resolve) => {
+    setTimeout(() => resolve("sdad"), 4000);
+  });
+
   const res = await fetch(url.toString());
 
   if (!res.ok) throw new Error(res.statusText);
@@ -54,7 +58,7 @@ export default async function Collection({ searchParams }: CustomNextPage) {
 
   return (
     <div className="w-full min-h-[92vh] px-8 py-6 flex flex-col justify-between">
-      <Header settings={settings} />
+      <Header settings={settings} resultsCount={totalCount} showN={pageSize} />
 
       <div className="flex-1">
         <Container collection={collection} layout={settings.collectionLayout} />

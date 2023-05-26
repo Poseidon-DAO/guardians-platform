@@ -1,19 +1,27 @@
 import { Avatar, SidebarLink } from "@/components";
 
 const links = [
-  { id: "1", label: "Collection", icon: "Image", link: "/collection" },
+  {
+    id: "1",
+    label: "Collection",
+    icon: "Image",
+    link: "/collection",
+    disabled: false,
+  },
   {
     id: "2",
     label: "Votes",
     icon: "Send",
     link: "/votes",
+    disabled: true,
   },
-  { id: "3", label: "Profile", icon: "User", link: "/profile" },
+  { id: "3", label: "Profile", icon: "User", link: "/profile", disabled: true },
   {
     id: "4",
     label: "Settings",
     icon: "Settings",
     link: "/settings",
+    disabled: true,
   },
 ];
 

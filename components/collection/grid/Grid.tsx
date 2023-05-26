@@ -1,5 +1,6 @@
 import { type Collection } from "@/types";
 import clsx from "clsx";
+import { Suspense } from "react";
 
 import Item from "../item/Item";
 
@@ -17,7 +18,10 @@ export default function Grid({ collection, layout = "grid" }: IProps) {
       )}
     >
       {collection.map((collection) => (
-        <Item key={collection.id} {...collection} />
+        <Suspense key={collection.id} fallback={<div>loading item</div>}>
+          {/* @ts-expect-error Server Component */}
+          <Item {...collection} />
+        </Suspense>
       ))}
     </div>
   );
