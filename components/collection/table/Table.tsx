@@ -1,6 +1,5 @@
 import { Card } from "@/components/card";
-import { type Collection } from "@/types";
-import clsx from "clsx";
+import { type Collection } from "@/lib/server/collection";
 
 import { Row } from "../row";
 

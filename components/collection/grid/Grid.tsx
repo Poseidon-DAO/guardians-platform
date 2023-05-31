@@ -1,8 +1,9 @@
-import { type Collection } from "@/types";
 import clsx from "clsx";
 import { Suspense } from "react";
 
-import Item from "../item/Item";
+import { type Collection } from "@/lib/server/collection";
+
+import ItemCard from "../item-card/Item-card";
 
 interface IProps extends React.PropsWithChildren {
   collection: Collection[];
@@ -20,7 +21,7 @@ export default function Grid({ collection, layout = "grid" }: IProps) {
       {collection.map((collection) => (
         <Suspense key={collection.id} fallback={<div>loading item</div>}>
           {/* @ts-expect-error Server Component */}
-          <Item {...collection} />
+          <ItemCard {...collection} />
         </Suspense>
       ))}
     </div>

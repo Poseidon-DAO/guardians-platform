@@ -1,5 +1,4 @@
 import { type IProps as PaginationProps } from "@/components/pagination/Pagination";
-import { useMemo } from "react";
 
 interface IProps extends PaginationProps {}
 

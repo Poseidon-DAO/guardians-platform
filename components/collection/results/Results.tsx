@@ -1,18 +1,16 @@
-import { Card } from "@/components/card";
 import { Text } from "@/components/text";
-import clsx from "clsx";
 
 interface IProps extends React.PropsWithChildren {
   resultsCount: number;
-  showN: number;
+  viewed: number;
 }
 
-export default function Results({ resultsCount, showN }: IProps) {
+export default function Results({ resultsCount, viewed }: IProps) {
   return (
     <div>
       <Text>
-        Showing <span className="font-bold">{showN}</span> of{" "}
-        <span className="font-bold">{resultsCount}</span> results
+        You&apos;ve viewed <span className="font-bold">{viewed}</span> of{" "}
+        <span className="font-bold">{resultsCount}</span> items
       </Text>
     </div>
   );

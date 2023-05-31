@@ -1,4 +1,4 @@
-import { type Collection } from "@/types";
+import { type Collection } from "@/lib/server/collection";
 
 import { Grid } from "../grid";
 import { Table } from "../table";

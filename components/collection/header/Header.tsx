@@ -1,4 +1,4 @@
-import { type UserSettings } from "@/types";
+import { type UserSettings } from "@/lib/server/user-settings";
 
 import { PlatformSelect } from "../platform-select";
 import { Results } from "../results";
@@ -10,24 +10,20 @@ import { ViewToggle } from "../view-toggle";
 interface IProps extends React.PropsWithChildren {
   settings: UserSettings;
   resultsCount: number;
-  showN: number;
+  viewed: number;
   className?: string;
 }
 
-export default function Header({ settings, resultsCount, showN }: IProps) {
+export default function Header({ settings, resultsCount, viewed }: IProps) {
   return (
-    <div className="mb-4">
+    <div className="my-4">
       <div className="grid grid-cols-12 gap-6 ">
-        <div className="w-full h-12 col-span-2 items-center">
-          <ShowMyVotes checked={settings.showVotedCollection} />
-        </div>
-
-        <div className="w-full h-12 col-span-4">
-          <Search />
-        </div>
-
         <div className="w-full h-12 col-span-2">
           <PlatformSelect />
+        </div>
+
+        <div className="w-full h-12 col-span-6">
+          <Search />
         </div>
 
         <div className="w-full h-12 col-span-2">
@@ -39,8 +35,9 @@ export default function Header({ settings, resultsCount, showN }: IProps) {
         </div>
       </div>
 
-      <div className="mt-4 text-right">
-        <Results resultsCount={resultsCount} showN={showN} />
+      <div className="mt-4 flex items-center justify-between">
+        <ShowMyVotes checked={settings.showVotedCollection} />
+        <Results resultsCount={resultsCount} viewed={viewed} />
       </div>
     </div>
   );

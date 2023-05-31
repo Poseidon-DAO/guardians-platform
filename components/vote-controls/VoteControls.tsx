@@ -63,7 +63,7 @@ export default function VoteControls({ collectionId, size }: IProps) {
   }
 
   return (
-    <div className="flex my-4">
+    <div className="flex">
       <div className="mr-2">
         <Button
           size={size}
@@ -71,7 +71,7 @@ export default function VoteControls({ collectionId, size }: IProps) {
           colorScheme="blue"
           onClick={handleDrop}
         >
-          <div className="">
+          <div>
             <ThumbsDown className="inline mr-2" width={18} height={18} /> DROP
           </div>
         </Button>

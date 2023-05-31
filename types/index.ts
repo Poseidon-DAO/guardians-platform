@@ -1,34 +1,10 @@
-export type Collection = {
-  id: string;
-  platform: string;
-  platformAddress: string;
-  tokenId: string;
-  tokenType: string;
-  title: string;
-  balance: string;
-  description: string;
-  tokenUriRaw: string;
-  tokenUriGateway: string;
-  image: string;
-  createdBy: string;
-  yearCreated: string;
-  mimeType: string;
-  mimeUri: string;
-  tags: string[];
-  timeLastUpdated: Date;
-};
-
-export type UserSettings = {
-  id: number;
-  userId: string;
-  theme: string;
-  collectionLayout: "table" | "column" | "grid";
-  showVotedCollection: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-export interface CustomNextPage {
-  params: { your_dynamic_prop_here: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+export interface CustomNextPage<
+  T extends Record<string, string> = Record<string, string>,
+  U extends Record<string, string | string[] | undefined> = Record<
+    string,
+    string | string[] | undefined
+  >
+> {
+  params?: T;
+  searchParams?: U;
 }

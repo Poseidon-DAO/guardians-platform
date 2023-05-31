@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       width: {
         "sidebar-width": "var(--sidebar-width)",
-        "popper-width": "var(--radix-select-trigger-width)",
+        "select-width": "var(--radix-select-trigger-width)",
       },
       colors: {
         blue: "#4923fc",

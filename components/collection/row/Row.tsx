@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Collection } from "@/types";
+import { type Collection } from "@/lib/server/collection";
 
 import { VoteControls } from "../../vote-controls";
 import { Text } from "../../text";
@@ -27,7 +27,9 @@ export default function Row({
       <Text className="w-1/4 text-left">{title}</Text>
       <Text className="w-1/4 text-left">{createdBy}</Text>
 
-      <VoteControls collectionId={id} size="small" />
+      <div className="my-4">
+        <VoteControls collectionId={id} size="small" />
+      </div>
     </div>
   );
 }
