@@ -34,7 +34,7 @@ export default function ViewToggle({ layout }: IProps) {
         },
         method: "POST",
         body: JSON.stringify({
-          userId: "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c",
+          userId: "",
           collectionLayout: value,
         }),
       });

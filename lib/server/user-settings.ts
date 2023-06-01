@@ -13,15 +13,12 @@ export type UserSettings = {
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
-export async function getUserSettings(userId: string) {
-  const cookieStore = cookies();
-  const theme = cookieStore.getAll();
-
-  console.log({ theme });
+export async function getUserSettings() {
+  const userId = cookies().get("userId")?.value;
 
   const url = new URL("/user/settings", baseUrl);
 
-  url.searchParams.append("userId", userId);
+  url.searchParams.append("userId", userId!);
 
   const res = await fetch(url.toString(), { cache: "no-cache" });
   if (!res.ok) throw new Error(res.statusText);

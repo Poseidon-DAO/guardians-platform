@@ -1,4 +1,5 @@
 import { type CustomNextPage } from "@/types";
+import { cookies } from "next/headers";
 
 export type Collection = {
   id: string;
@@ -28,7 +29,6 @@ export type Collection = {
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
-let userId = "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c";
 
 export async function getCollectionItem(collectionId: string) {
   const url = new URL(`/collection/${collectionId}`, baseUrl);
@@ -57,7 +57,8 @@ export async function getCollection(
     });
   }
 
-  url.searchParams.append("userId", userId);
+  const userId = cookies().get("userId")?.value;
+  url.searchParams.append("userId", userId as string);
 
   const res = await fetch(url.toString());
 

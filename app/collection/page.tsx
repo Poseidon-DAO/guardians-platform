@@ -5,14 +5,12 @@ import { getUserSettings } from "@/lib/server/user-settings";
 
 import { type CustomNextPage } from "@/types";
 
-let userId = "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c";
-
 export default async function Collection({
   searchParams,
 }: CustomNextPage<{}, { page: string }>) {
   const page = Number(searchParams?.page) || 1;
 
-  const settings = await getUserSettings(userId);
+  const settings = await getUserSettings();
   const { collection, pageSize, totalCount, pageCount } = await getCollection(
     searchParams
   );

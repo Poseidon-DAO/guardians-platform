@@ -4,9 +4,7 @@ import GridSkeleton, {
 import { getUserSettings } from "@/lib/server";
 
 export default async function CollectionSkeleton() {
-  const settings = await getUserSettings(
-    "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c"
-  );
+  const settings = await getUserSettings();
 
   const columns = settings.collectionLayout === "grid" ? 3 : 5;
 

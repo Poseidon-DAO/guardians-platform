@@ -20,9 +20,7 @@ export default async function ItemCard({
   createdBy,
   votes,
 }: IProps) {
-  const settings = await getUserSettings(
-    "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c"
-  );
+  const settings = await getUserSettings();
 
   return (
     <Link href={`/collection/${id}`}>
