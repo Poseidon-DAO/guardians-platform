@@ -20,7 +20,7 @@ export default async function Collection({
   const viewedItems = (page - 1) * pageSize + pageCount;
 
   return (
-    <div className="w-full px-8 flex flex-col justify-between">
+    <div className="w-full px-6 flex flex-col justify-between">
       <Header
         settings={settings}
         resultsCount={totalCount}

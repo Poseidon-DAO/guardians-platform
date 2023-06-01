@@ -5,6 +5,7 @@ import { useAccount } from "wagmi";
 import { ThumbsDown, ThumbsUp } from "react-feather";
 
 import { Button } from "../button";
+import { Text } from "../text";
 
 interface IProps extends React.PropsWithChildren {
   collectionId: string;
@@ -71,8 +72,9 @@ export default function VoteControls({ collectionId, size }: IProps) {
           colorScheme="blue"
           onClick={handleDrop}
         >
-          <div>
-            <ThumbsDown className="inline mr-2" width={18} height={18} /> DROP
+          <div className="flex items-center">
+            <ThumbsDown className="mr-2" width={18} height={18} />
+            <Text>Drop</Text>
           </div>
         </Button>
       </div>
@@ -84,8 +86,9 @@ export default function VoteControls({ collectionId, size }: IProps) {
           colorScheme="blue"
           onClick={handleHold}
         >
-          <div>
-            <ThumbsUp className="inline mr-2" width={18} height={18} /> HOLD
+          <div className="flex items-center">
+            <ThumbsUp className="mr-2" width={18} height={18} />
+            <Text>Hold</Text>
           </div>
         </Button>
       </div>

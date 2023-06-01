@@ -16,7 +16,7 @@ interface IProps extends React.PropsWithChildren {
 
 export default function Header({ settings, resultsCount, viewed }: IProps) {
   return (
-    <div className="my-4">
+    <div className="my-6">
       <div className="grid grid-cols-12 gap-6 ">
         <div className="w-full h-12 col-span-2">
           <PlatformSelect />

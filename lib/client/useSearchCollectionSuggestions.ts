@@ -15,7 +15,9 @@ async function getSuggestions(query: string): Promise<SearchResponse> {
   const url = new URL(key, baseUrl);
   url.searchParams.append("query", query);
 
-  const res = await fetch(url.toString(), { cache: "no-store" });
+  const res = await fetch(url.toString(), {
+    cache: "no-store",
+  });
   return await res.json();
 }
 

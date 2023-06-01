@@ -39,11 +39,9 @@ export default function ViewToggle({ layout }: IProps) {
         }),
       });
       if (res.ok) {
+        setLocalLayout(value);
         router.refresh();
       }
-      // const settings = (await res.json()) as UserSettings;
-
-      // setCollectionLayout(value as UiState["collectionLayout"]);
     }
   }
 

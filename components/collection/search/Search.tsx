@@ -5,10 +5,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 import { Input } from "@/components/ui";
-import { createQueryString } from "@/utils/utils/url";
 import { Text } from "@/components/text";
-import useDebounce from "@/hooks/core/useDebounce";
+import { createQueryString } from "@/utils/utils/url";
 import useSearchCollectionSuggestions from "@/lib/client/useSearchCollectionSuggestions";
+import useDebounce from "@/hooks/core/useDebounce";
+import { useClickOutside } from "@/hooks/core";
 
 export const QUERY_KEY = "query";
 
@@ -26,6 +27,8 @@ export default function Search(props: IProps) {
   const debouncedQuery = useDebounce(query, 500);
 
   const [popoverOpen, setPopoverOpen] = useState(!!debouncedQuery);
+
+  const containerRef = useClickOutside(() => setPopoverOpen(false));
 
   const { mutate, data, isSuccess, isLoading } =
     useSearchCollectionSuggestions();
@@ -51,10 +54,6 @@ export default function Search(props: IProps) {
     setPopoverOpen(!!debouncedQuery);
   }
 
-  function handleBlur() {
-    // setPopoverOpen(false);
-  }
-
   function handleSuggestionClick(id: string) {
     setPopoverOpen(false);
     router.push(`/collection/${id}`);
@@ -72,7 +71,7 @@ export default function Search(props: IProps) {
   }
 
   return (
-    <div className="h-full w-full relative">
+    <div className="h-full w-full relative" ref={containerRef}>
       <form className="w-full h-full " onSubmit={handleSubmit}>
         <Input
           className="w-full h-full px-[15px]"
@@ -80,7 +79,6 @@ export default function Search(props: IProps) {
           value={query}
           onChange={handleChange}
           onFocus={handleFocus}
-          onBlur={handleBlur}
         />
       </form>
 
