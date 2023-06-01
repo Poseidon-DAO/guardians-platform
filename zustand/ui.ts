@@ -1,8 +1,8 @@
+import { LayoutTypes } from "@/components/collection/view-toggle/ViewToggle";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 export interface UiState {
-  collectionLayout: "table" | "column" | "grid";
+  collectionLayout: LayoutTypes;
   setCollectionLayout: (collectionLayout: UiState["collectionLayout"]) => void;
 }
 

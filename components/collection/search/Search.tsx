@@ -57,7 +57,7 @@ export default function Search(props: IProps) {
 
   function handleSuggestionClick(id: string) {
     setPopoverOpen(false);
-    router.push(`/collection/${id}?refresh=true`);
+    router.push(`/collection/${id}`);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {

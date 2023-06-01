@@ -59,7 +59,7 @@ export async function getCollection(
 
   url.searchParams.append("userId", userId);
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), { cache: "no-store" });
 
   if (!res.ok) throw new Error(res.statusText);
   const collection = (await res.json()) as {

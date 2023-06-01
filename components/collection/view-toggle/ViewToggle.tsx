@@ -10,7 +10,7 @@ interface IProps extends React.PropsWithChildren {
   className?: string;
 }
 
-export type LayoutTypes = "grid" | "table" | "column";
+export type LayoutTypes = "grid" | "table" | "big-grid";
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
@@ -68,7 +68,7 @@ export default function ViewToggle({ layout }: IProps) {
           toggleGroupItemClasses,
           "border-l-[1px] border-r-[1px] border-line data-[state=on]:border-0",
         ].join(" ")}
-        value="column"
+        value="grid"
         aria-label="Column view"
       >
         <Grid />
@@ -76,7 +76,7 @@ export default function ViewToggle({ layout }: IProps) {
 
       <ToggleGroup.Item
         className={toggleGroupItemClasses}
-        value="grid"
+        value="big-grid"
         aria-label="Grid view"
       >
         <div>

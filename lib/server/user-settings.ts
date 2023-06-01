@@ -1,8 +1,10 @@
+import { type LayoutTypes } from "@/components/collection/view-toggle/ViewToggle";
+
 export type UserSettings = {
   id: number;
   userId: string;
   theme: string;
-  collectionLayout: "table" | "column" | "grid";
+  collectionLayout: LayoutTypes;
   showVotedCollection: boolean;
   createdAt: Date;
   updatedAt: Date;
