@@ -27,7 +27,7 @@ export default async function Collection({
         viewed={viewedItems}
       />
 
-      <div className="flex-1">
+      <div className="flex-1 mb-4">
         <Container collection={collection} layout={settings.collectionLayout} />
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { List, Columns, Grid } from "react-feather";
+import { List, Grid } from "react-feather";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -71,7 +71,7 @@ export default function ViewToggle({ layout }: IProps) {
         value="column"
         aria-label="Column view"
       >
-        <Columns />
+        <Grid />
       </ToggleGroup.Item>
 
       <ToggleGroup.Item
@@ -79,7 +79,32 @@ export default function ViewToggle({ layout }: IProps) {
         value="grid"
         aria-label="Grid view"
       >
-        <Grid />
+        <div>
+          {["1", "2", "3"].map((el) => (
+            <div
+              key={el}
+              className="w-[5px] h-[5px] ml-[1.5px] mb-[1.5px] border-[1.5px] rounded-[1px] border-current"
+            ></div>
+          ))}
+        </div>
+
+        <div>
+          {["1", "2", "3"].map((el) => (
+            <div
+              key={el}
+              className="w-[5px] h-[5px] ml-[1.5px] mb-[1.5px] border-[1.5px] rounded-[1px] border-current"
+            ></div>
+          ))}
+        </div>
+
+        <div>
+          {["1", "2", "3"].map((el) => (
+            <div
+              key={el}
+              className="w-[5px] h-[5px] ml-[1.5px] mb-[1.5px] border-[1.5px] rounded-[1px] border-current"
+            ></div>
+          ))}
+        </div>
       </ToggleGroup.Item>
     </ToggleGroup.Root>
   );

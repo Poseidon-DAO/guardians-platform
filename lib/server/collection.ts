@@ -30,6 +30,16 @@ export type Collection = {
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 let userId = "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c";
 
+export async function getCollectionItem(collectionId: string) {
+  const url = new URL(`/collection/${collectionId}`, baseUrl);
+
+  const res = await fetch(url.toString());
+  if (!res.ok) throw new Error(res.statusText);
+  const collectionItem = (await res.json()) as Collection;
+
+  return collectionItem;
+}
+
 export async function getCollection(
   searchParams?: CustomNextPage["searchParams"]
 ) {

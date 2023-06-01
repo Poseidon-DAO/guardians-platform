@@ -15,7 +15,7 @@ export default function Grid({ collection, layout = "grid" }: IProps) {
     <div
       className={clsx(
         "grid grid-cols-${cols} gap-6",
-        layout === "grid" ? "grid-cols-3" : "grid-cols-2"
+        layout === "grid" ? "grid-cols-4" : "grid-cols-3"
       )}
     >
       {collection.map((collection) => (

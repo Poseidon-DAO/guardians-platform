@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { ThumbsDown, ThumbsUp } from "react-feather";
-import { Tooltip } from "@/components/tooltip";
 import { type Collection } from "@/lib/server/collection";
 import formatAddress from "@/utils/formatAddress";
 
@@ -74,29 +73,25 @@ export default function Item({
           </Text>
 
           <div className="inline-flex items-center ">
-            <Tooltip title="Downvotes" position="top">
-              <div className="flex items-center mr-8">
-                <ThumbsDown size={16} />
-                <Text className="mx-[5px]" size={isPage ? "large" : "small"}>
-                  {downvotes.length}
-                </Text>
-                <Text size={isPage ? "large" : "small"}>
-                  {downvotes.length === 1 ? "Downvote" : "Downvotes"}
-                </Text>
-              </div>
-            </Tooltip>
+            <div className="flex items-center mr-8">
+              <ThumbsDown size={16} />
+              <Text className="mx-[5px]" size={isPage ? "large" : "small"}>
+                {downvotes.length}
+              </Text>
+              <Text size={isPage ? "large" : "small"}>
+                {downvotes.length === 1 ? "Downvote" : "Downvotes"}
+              </Text>
+            </div>
 
-            <Tooltip title="Upvotes" position="top">
-              <div className="flex items-center">
-                <ThumbsUp size={16} />
-                <Text className="mx-[5px]" size={isPage ? "large" : "small"}>
-                  {upvotes.length}
-                </Text>
-                <Text size={isPage ? "large" : "small"}>
-                  {upvotes.length === 1 ? "Upvote" : "Upvotes"}
-                </Text>
-              </div>
-            </Tooltip>
+            <div className="flex items-center">
+              <ThumbsUp size={16} />
+              <Text className="mx-[5px]" size={isPage ? "large" : "small"}>
+                {upvotes.length}
+              </Text>
+              <Text size={isPage ? "large" : "small"}>
+                {upvotes.length === 1 ? "Upvote" : "Upvotes"}
+              </Text>
+            </div>
           </div>
         </div>
 

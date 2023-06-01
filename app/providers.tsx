@@ -14,6 +14,7 @@ import {
   mainnet,
   goerli,
 } from "wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 
 const chainFromEnv = process.env.NEXT_PUBLIC_CHAIN_ID as "0x1" | "0x5";
@@ -50,14 +51,18 @@ const theme: Theme = {
   },
 };
 
+const queryClient = new QueryClient();
+
 interface IProps extends React.PropsWithChildren {}
 
 export function Providers({ children }: IProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} theme={theme} modalSize="compact">
-        {children}
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <QueryClientProvider client={queryClient}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider chains={chains} theme={theme} modalSize="compact">
+          {children}
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </QueryClientProvider>
   );
 }

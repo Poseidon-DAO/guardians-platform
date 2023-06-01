@@ -59,7 +59,7 @@ export default function Pagination({
   const lastPage = paginationItems[paginationItems.length - 1];
 
   return (
-    <div className="text-center pt-6">
+    <div className="text-center py-6">
       <nav className="h-12 inline-flex justify-between">
         <Button
           intent="text"
