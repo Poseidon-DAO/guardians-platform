@@ -5,6 +5,8 @@ import { List, Grid } from "react-feather";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { useUserStore } from "@/zustand/user";
+
 interface IProps extends React.PropsWithChildren {
   layout: LayoutTypes;
   className?: string;
@@ -19,6 +21,7 @@ const toggleGroupItemClasses =
 
 export default function ViewToggle({ layout }: IProps) {
   const router = useRouter();
+  const user = useUserStore((state) => state.user);
 
   const [localLayout, setLocalLayout] = useState(layout);
 
@@ -34,7 +37,7 @@ export default function ViewToggle({ layout }: IProps) {
         },
         method: "POST",
         body: JSON.stringify({
-          userId: "",
+          userId: user?.id,
           collectionLayout: value,
         }),
       });

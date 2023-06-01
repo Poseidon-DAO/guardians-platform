@@ -1,6 +1,7 @@
 "use client";
 
 import { createQueryString } from "@/utils/utils/url";
+import { useUserStore } from "@/zustand/user";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -14,10 +15,12 @@ interface IProps extends React.PropsWithChildren {
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
-export default function ShowMyVotes({ checked, onChange }: IProps) {
+export default function ShowMyVotes({ checked }: IProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const user = useUserStore((state) => state.user);
 
   const [localChecked, setLocalChecked] = useState(checked);
 
@@ -32,7 +35,7 @@ export default function ShowMyVotes({ checked, onChange }: IProps) {
       },
       method: "POST",
       body: JSON.stringify({
-        userId: "243547bd-61e5-4ebb-bcae-fbdb16ae3d4c",
+        userId: user?.id,
         showVotedCollection: status,
       }),
     });
