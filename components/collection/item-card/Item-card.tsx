@@ -10,7 +10,9 @@ import { Card } from "../../card";
 import { VoteControls } from "../../vote-controls";
 import { Text } from "../../text";
 
-interface IProps extends React.PropsWithChildren, Collection {}
+interface IProps extends React.PropsWithChildren, Collection {
+  gridsLength?: number;
+}
 
 export default async function ItemCard({
   id,
@@ -19,6 +21,7 @@ export default async function ItemCard({
   title,
   createdBy,
   votes,
+  gridsLength,
 }: IProps) {
   const settings = await getUserSettings();
 
@@ -31,6 +34,9 @@ export default async function ItemCard({
           priority
           fill
           className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-110"
+          sizes={`(max-width: 640px) 100vw, (max-width: 1024px) 50vw, ${
+            gridsLength === 3 ? "33vw" : "20vw"
+          }`}
         />
         <div className="flex flex-col-reverse text-white p-4 absolute w-full h-full bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none">
           <div className="pointer-events-auto">

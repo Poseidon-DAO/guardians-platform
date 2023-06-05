@@ -16,7 +16,7 @@ interface IProps extends React.PropsWithChildren {
 export default function RootLayout({ children, modal }: IProps) {
   return (
     <html lang="en">
-      <body className="bg-gray-100">
+      <body className="bg-line">
         <Providers>
           <Header />
           <div className="min-h-[92vh] pt-[8vh]">{children}</div>

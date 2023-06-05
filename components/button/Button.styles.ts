@@ -16,7 +16,7 @@ export const classes = cva(
     variants: {
       intent: {
         contained: "text-white border-transparent",
-        outline: "bg-white hover:bg-gray-100",
+        outline: "bg-white hover:bg-line",
         text: "bg-transparent hover:bg-gray-200 border-transparent",
       },
       size: {

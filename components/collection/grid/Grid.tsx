@@ -23,7 +23,7 @@ export default function Grid({ collection, layout = "grid" }: IProps) {
       {collection.map((collection) => (
         <Suspense key={collection.id} fallback={<GridItem />}>
           {/* @ts-expect-error Server Component */}
-          <ItemCard {...collection} />
+          <ItemCard {...collection} gridsLength={layout === "grid" ? 3 : 5} />
         </Suspense>
       ))}
     </div>

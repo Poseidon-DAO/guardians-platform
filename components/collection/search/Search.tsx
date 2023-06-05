@@ -7,9 +7,9 @@ import Image from "next/image";
 import { Input } from "@/components/ui";
 import { Text } from "@/components/text";
 import { createQueryString } from "@/utils/utils/url";
-import useSearchCollectionSuggestions from "@/lib/client/useSearchCollectionSuggestions";
-import useDebounce from "@/hooks/core/useDebounce";
 import { useClickOutside } from "@/hooks/core";
+import useDebounce from "@/hooks/core/useDebounce";
+import useSearchCollectionSuggestions from "@/lib/client/useSearchCollectionSuggestions";
 
 export const QUERY_KEY = "query";
 
@@ -50,12 +50,16 @@ export default function Search(props: IProps) {
     setQuery(event?.target.value);
   }
 
+  function closePopover() {
+    setPopoverOpen(false);
+  }
+
   function handleFocus() {
     setPopoverOpen(!!debouncedQuery);
   }
 
   function handleSuggestionClick(id: string) {
-    setPopoverOpen(false);
+    closePopover();
     router.push(`/collection/${id}`);
   }
 
@@ -74,16 +78,25 @@ export default function Search(props: IProps) {
     <div className="h-full w-full relative" ref={containerRef}>
       <form className="w-full h-full " onSubmit={handleSubmit}>
         <Input
-          className="w-full h-full px-[15px]"
+          className="w-full h-full"
           placeholder="Search for Collection"
           value={query}
           onChange={handleChange}
+          onClear={closePopover}
           onFocus={handleFocus}
+          isLoading={isLoading}
         />
       </form>
 
       {popoverOpen && (
         <div className="absolute top-full left-0 w-full z-20 overflow-hidden bg-white rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] mt-2 p-[5px]">
+          {!!suggestions?.length && (
+            <Text className="px-[10px] py-2 text-right" size="small">
+              {suggestions.length} results found for{" "}
+              <span className="font-medium">&quot;{query}&quot;</span>
+            </Text>
+          )}
+
           {!!suggestions?.length &&
             suggestions.map((suggestion) => (
               <div
