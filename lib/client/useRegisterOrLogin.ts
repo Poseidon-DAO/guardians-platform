@@ -12,7 +12,7 @@ export type User = {
 const key: string = "/registerOrLogin";
 
 async function registerOrLogin(address: string): Promise<User> {
-  const res = await fetch(`/api/register?address=${address}`, {
+  const res = await fetch(`/api/connect?address=${address}`, {
     headers: {
       accept: "application/json",
       "content-type": "application/json",

@@ -4,8 +4,9 @@ import formatAddress from "@/utils/formatAddress";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
+
 import { Text } from "../text";
-import { Tooltip } from "../tooltip";
+import { Tooltip } from "../ui/tooltip";
 
 const tooltipTexts = {
   COPY: "Copy",
@@ -52,7 +53,7 @@ export default function Avatar() {
         >
           Unnamed Account
         </Text>
-        <Tooltip title={tooltipText}>
+        <Tooltip content={tooltipText}>
           <Text
             textColor="indigo"
             className="font-extrabold hover:text-background/70 cursor-pointer"

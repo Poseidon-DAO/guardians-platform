@@ -1,4 +1,3 @@
-export * from "./auth-redirect";
 export * from "./avatar";
 export * from "./back-button";
 export * from "./button";
@@ -12,5 +11,5 @@ export * from "./sidebar";
 export * from "./sidebar-link";
 export * from "./grid-skeleton";
 export * from "./text";
-export * from "./tooltip";
+export * from "./ui/tooltip";
 export * from "./vote-controls";

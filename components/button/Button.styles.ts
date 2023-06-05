@@ -30,7 +30,7 @@ export const classes = cva(
         indigo: "text-background",
       },
       disabled: {
-        true: "text-purple pointer-events-none",
+        true: "text-purple pointer-events-none border-purple opacity-60",
         false: "",
       },
     },
@@ -64,6 +64,11 @@ export const classes = cva(
         intent: "outline",
         colorScheme: "indigo",
         className: "border-background",
+      },
+      {
+        intent: "contained",
+        disabled: true,
+        className: "bg-purple",
       },
     ],
     defaultVariants: {

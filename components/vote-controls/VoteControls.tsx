@@ -1,11 +1,13 @@
 "use client";
 
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import { useAccount } from "wagmi";
 import { ThumbsDown, ThumbsUp } from "react-feather";
+import { useUserStore } from "@/zustand/user";
 
 import { Button } from "../button";
 import { Text } from "../text";
+import { Tooltip } from "../ui";
 
 interface IProps extends React.PropsWithChildren {
   collectionId: string;
@@ -41,6 +43,8 @@ async function handleVote({
 }
 
 export default function VoteControls({ collectionId, size }: IProps) {
+  const user = useUserStore((state) => state.user);
+
   const { address } = useAccount();
 
   async function handleDrop() {
@@ -64,34 +68,38 @@ export default function VoteControls({ collectionId, size }: IProps) {
   }
 
   return (
-    <div className="flex">
-      <div className="mr-2">
-        <Button
-          size={size}
-          intent="outline"
-          colorScheme="blue"
-          onClick={handleDrop}
-        >
-          <div className="flex items-center">
-            <ThumbsDown className="mr-2" width={18} height={18} />
-            <Text>Drop</Text>
-          </div>
-        </Button>
-      </div>
+    <Tooltip content="You must be a Guardian in order to vote!">
+      <div className="flex">
+        <div className="mr-2">
+          <Button
+            size={size}
+            intent="outline"
+            colorScheme="blue"
+            onClick={handleDrop}
+            disabled={!user?.isGuardian}
+          >
+            <div className="flex items-center">
+              <ThumbsDown className="mr-2" width={18} height={18} />
+              <Text>Drop</Text>
+            </div>
+          </Button>
+        </div>
 
-      <div className="mr-2">
-        <Button
-          size={size}
-          intent="contained"
-          colorScheme="blue"
-          onClick={handleHold}
-        >
-          <div className="flex items-center">
-            <ThumbsUp className="mr-2" width={18} height={18} />
-            <Text>Hold</Text>
-          </div>
-        </Button>
+        <div className="mr-2">
+          <Button
+            size={size}
+            intent="contained"
+            colorScheme="blue"
+            onClick={handleHold}
+            disabled={!user?.isGuardian}
+          >
+            <div className="flex items-center">
+              <ThumbsUp className="mr-2" width={18} height={18} />
+              <Text>Hold</Text>
+            </div>
+          </Button>
+        </div>
       </div>
-    </div>
+    </Tooltip>
   );
 }

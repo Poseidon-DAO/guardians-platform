@@ -15,12 +15,13 @@ export default function Row({
 }: IProps) {
   return (
     <div className="overflow-hidden p-4 flex items-center justify-between border-b-[1px] last:border-b-0 border-b-line">
-      <div className="relative w-40 h-20">
+      <div className="relative w-60 h-32">
         <Image
+          fill
           src={image}
           alt={description}
-          fill
           className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-105"
+          sizes="15rem"
         />
       </div>
 

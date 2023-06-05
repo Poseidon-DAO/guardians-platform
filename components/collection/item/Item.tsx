@@ -1,12 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ThumbsDown, ThumbsUp } from "react-feather";
-import { type Collection } from "@/lib/server/collection";
 import formatAddress from "@/utils/formatAddress";
 
+import { type Collection } from "@/lib/server/collection";
+
 import { Card } from "../../card";
-import { VoteControls } from "../../vote-controls";
 import { Text } from "../../text";
-import Link from "next/link";
+import { VoteControls } from "../../vote-controls";
 
 interface IProps extends React.PropsWithChildren {
   item: Collection;
