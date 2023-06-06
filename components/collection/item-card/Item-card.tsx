@@ -38,7 +38,7 @@ export default async function ItemCard({
             src={image}
             alt={description}
             fill
-            className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-110"
+            className="object-cover object-center rounded-lg transition-transform duration-500 hover:scale-110 will-change-transform backface-hidden"
             sizes={`(max-width: 640px) 100vw, (max-width: 1024px) 50vw, ${
               gridsLength === 3 ? "33vw" : "20vw"
             }`}

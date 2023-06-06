@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backfaceVisibility: {
+        hidden: "hidden",
+        visible: "visible",
+      },
       width: {
         "sidebar-width": "var(--sidebar-width)",
         "select-width": "var(--radix-select-trigger-width)",
