@@ -38,8 +38,7 @@ export default function ConnectButton() {
 
   useEffect(() => {
     if (isRegisterOrLoginSuccess) {
-      console.log("hini");
-      router.push("/collection");
+      // router.push("/collection");
     }
 
     if (isLogoutSuccess) {

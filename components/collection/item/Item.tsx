@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { ThumbsDown, ThumbsUp } from "react-feather";
+
 import formatAddress from "@/utils/formatAddress";
 
 import { type Collection } from "@/lib/server/collection";
@@ -35,6 +37,10 @@ export default function Item({
 }: IProps) {
   const downvotes = votes.filter((vote) => vote.vote === "DOWNVOTE");
   const upvotes = votes.filter((vote) => vote.vote === "UPVOTE");
+
+  const currentVote = votes.find(
+    (vote) => vote.userId === cookies().get("userId")?.value
+  );
 
   const isPage = type === "page";
   const hasLotsOfTags = tags.length > 12;
@@ -221,7 +227,7 @@ export default function Item({
         )}
 
         <div className="flex items-center justify-between">
-          <VoteControls collectionId={id} />
+          <VoteControls collectionId={id} currentVote={currentVote} />
         </div>
       </div>
     </div>

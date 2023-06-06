@@ -1,6 +1,14 @@
 import { type CustomNextPage } from "@/types";
 import { cookies } from "next/headers";
 
+export type Vote = {
+  vote: "DOWNVOTE" | "UPVOTE";
+  userId: string;
+  collectionId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type Collection = {
   id: string;
   platform: string;
@@ -19,13 +27,7 @@ export type Collection = {
   mimeUri: string;
   tags: string[];
   timeLastUpdated: Date;
-  votes: {
-    vote: "DOWNVOTE" | "UPVOTE";
-    userId: string;
-    collectionId: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }[];
+  votes: Vote[];
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
@@ -60,7 +62,7 @@ export async function getCollection(
   const userId = cookies().get("userId")?.value;
   url.searchParams.append("userId", userId as string);
 
-  const res = await fetch(url.toString(), { cache: "force-cache" });
+  const res = await fetch(url.toString() /*{ cache: "force-cache" }*/);
 
   if (!res.ok) throw new Error(res.statusText);
   const collection = (await res.json()) as {

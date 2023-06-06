@@ -4,9 +4,9 @@ interface IProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "color">,
     VariantProps {}
 
-export default function Spinner({ size, color }: IProps) {
+export default function Spinner({ size, color, className }: IProps) {
   return (
-    <div role="status">
+    <div role="status" className={className}>
       <svg
         aria-hidden="true"
         className={classes({ size, color })}

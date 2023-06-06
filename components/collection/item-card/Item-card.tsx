@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { BarChart2 } from "react-feather";
 import { Tooltip } from "@/components/ui/tooltip";
 import { getUserSettings } from "@/lib/server";
@@ -25,6 +26,10 @@ export default async function ItemCard({
 }: IProps) {
   const settings = await getUserSettings();
 
+  const currentVote = votes.find(
+    (vote) => vote.userId === cookies().get("userId")?.value
+  );
+
   return (
     <div>
       <Link href={`/collection/${id}`}>
@@ -32,7 +37,6 @@ export default async function ItemCard({
           <Image
             src={image}
             alt={description}
-            priority
             fill
             className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-110"
             sizes={`(max-width: 640px) 100vw, (max-width: 1024px) 50vw, ${
@@ -56,6 +60,7 @@ export default async function ItemCard({
         <div className="my-4">
           <VoteControls
             collectionId={id}
+            currentVote={currentVote}
             size={settings.collectionLayout === "grid" ? "medium" : "small"}
           />
         </div>

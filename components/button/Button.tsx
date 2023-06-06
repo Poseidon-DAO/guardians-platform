@@ -1,10 +1,13 @@
 import clsx from "clsx";
+import { Spinner } from "../ui";
 
 import { classes, VariantProps } from "./Button.styles";
 
 interface IProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "disabled">,
-    VariantProps {}
+    VariantProps {
+  isLoading?: boolean;
+}
 
 export default function Button({
   intent,
@@ -13,6 +16,7 @@ export default function Button({
   className,
   children,
   disabled,
+  isLoading = false,
   ...props
 }: IProps) {
   return (
@@ -27,7 +31,7 @@ export default function Button({
         })}
         {...props}
       >
-        {children}
+        {isLoading ? <Spinner size="small" className="mx-2" /> : children}
       </button>
     </span>
   );

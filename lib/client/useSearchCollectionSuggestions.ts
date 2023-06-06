@@ -8,11 +8,11 @@ type SearchResponse = {
   count: number;
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 const key: string = "/search";
+const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
+const url = new URL(key, baseUrl);
 
 async function getSuggestions(query: string): Promise<SearchResponse> {
-  const url = new URL(key, baseUrl);
   url.searchParams.append("query", query);
 
   const res = await fetch(url.toString(), {

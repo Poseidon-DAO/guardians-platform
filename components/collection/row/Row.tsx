@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cookies } from "next/headers";
 import { type Collection } from "@/lib/server/collection";
 
 import { VoteControls } from "../../vote-controls";
@@ -11,8 +12,13 @@ export default function Row({
   image,
   description,
   title,
+  votes,
   createdBy,
 }: IProps) {
+  const currentVote = votes.find(
+    (vote) => vote.userId === cookies().get("userId")?.value
+  );
+
   return (
     <div className="overflow-hidden p-4 flex items-center justify-between border-b-[1px] last:border-b-0 border-b-line">
       <div className="relative w-60 h-32">
@@ -29,7 +35,11 @@ export default function Row({
       <Text className="w-1/4 text-left">{createdBy}</Text>
 
       <div className="my-4">
-        <VoteControls collectionId={id} size="small" />
+        <VoteControls
+          collectionId={id}
+          currentVote={currentVote}
+          size="small"
+        />
       </div>
     </div>
   );
