@@ -31,7 +31,8 @@ export default function Button({
         })}
         {...props}
       >
-        {isLoading ? <Spinner size="small" className="mx-2" /> : children}
+        {children}
+        {isLoading && <Spinner size="xs" className="mx-2" />}
       </button>
     </span>
   );

@@ -1,17 +1,17 @@
 "use client";
 
-import { ReactNode, type ComponentProps } from "react";
+import { useState, type ComponentProps, type ReactNode } from "react";
 import { useAccount } from "wagmi";
 import { ThumbsDown, ThumbsUp } from "react-feather";
 import { useUserStore } from "@/zustand/user";
 
 import { type Vote } from "@/lib/server";
 import useVote from "@/lib/client/useVote";
+import useRevalidate from "@/lib/client/useRevalidate";
 
 import { Button } from "../button";
 import { Text } from "../text";
 import { Tooltip } from "../ui";
-import { useRouter } from "next/navigation";
 
 interface IProps extends React.PropsWithChildren {
   collectionId: string;
@@ -24,28 +24,42 @@ export default function VoteControls({
   size,
   currentVote,
 }: IProps) {
-  const router = useRouter();
+  const { address } = useAccount();
   const user = useUserStore((state) => state.user);
 
-  const { mutate: handleVote, isLoading: isVoting } = useVote({
+  const { mutate: revalidateVote, isLoading: isRevalidatingVote } =
+    useRevalidate();
+
+  const { mutate: handleVote } = useVote({
     action: "vote",
-    onSuccess: () => router.refresh(),
+    onSuccess: () => revalidateVote("collection"),
   });
+
   const { mutate: handleVoteChange, isLoading: isChangingVote } = useVote({
     action: "changeVote",
-    onSuccess: () => router.refresh(),
+    onSuccess: () => revalidateVote("collection"),
   });
-  const { mutate: handleVoteDelete, isLoading: isDeletingVote } = useVote({
+
+  const { mutate: handleVoteDelete } = useVote({
     action: "deleteVote",
-    onSuccess: () => router.refresh(),
+    onSuccess: () => revalidateVote("collection"),
   });
 
-  const { address } = useAccount();
+  const [newVote, setNewVote] = useState<Partial<Vote> | undefined>();
 
-  const isDownvote = currentVote?.vote === "DOWNVOTE";
-  const isUpvote = currentVote?.vote === "UPVOTE";
+  const isNewDownvote = newVote?.vote === "DOWNVOTE";
+  const isCurrentDownvote = currentVote?.vote === "DOWNVOTE";
 
-  const isLoading = isVoting || isChangingVote || isDeletingVote;
+  const isNewUpvote = newVote?.vote === "UPVOTE";
+  const isCurrentUpvote = currentVote?.vote === "UPVOTE";
+
+  const isDownvoteLoading =
+    (isNewDownvote && isRevalidatingVote) ||
+    (isCurrentDownvote && isChangingVote && isRevalidatingVote);
+
+  const isUpvoteLoading =
+    (isNewUpvote && isRevalidatingVote) ||
+    (isCurrentUpvote && isChangingVote && isRevalidatingVote);
 
   const getVoteArgs = (vote: "UPVOTE" | "DOWNVOTE") => ({
     collectionId,
@@ -55,25 +69,32 @@ export default function VoteControls({
 
   function handleDrop() {
     if (!address) return;
-    if (isDownvote) return handleVoteDelete(getVoteArgs("DOWNVOTE"));
-    if (isUpvote) return handleVoteChange(getVoteArgs("DOWNVOTE"));
 
-    handleVote(getVoteArgs("DOWNVOTE"));
+    const vote = getVoteArgs("DOWNVOTE");
+    setNewVote(vote);
+
+    if (isCurrentDownvote) return handleVoteDelete(getVoteArgs("DOWNVOTE"));
+    if (isCurrentUpvote) return handleVoteChange(getVoteArgs("DOWNVOTE"));
+
+    handleVote(vote);
   }
 
   function handleHold() {
     if (!address) return;
-    if (isUpvote) return handleVoteDelete(getVoteArgs("UPVOTE"));
-    if (isDownvote) return handleVoteChange(getVoteArgs("UPVOTE"));
 
-    handleVote(getVoteArgs("UPVOTE"));
+    const vote = getVoteArgs("UPVOTE");
+    setNewVote(vote);
+
+    if (isCurrentUpvote) return handleVoteDelete(getVoteArgs("UPVOTE"));
+    if (isCurrentDownvote) return handleVoteChange(getVoteArgs("UPVOTE"));
+
+    handleVote(vote);
   }
 
   function renderWithTooltip(tooltip: string, children: ReactNode) {
     if (tooltip) {
       return <Tooltip content={tooltip}>{children}</Tooltip>;
     }
-
     return <>{children}</>;
   }
 
@@ -82,24 +103,24 @@ export default function VoteControls({
     <div className="flex">
       <div className="mr-2">
         {renderWithTooltip(
-          isDownvote ? "Remove vote" : "Down-vote",
+          isCurrentDownvote ? "Remove vote" : "Down-vote",
           <Button
             size={size}
             intent="outline"
             colorScheme="blue"
             onClick={handleDrop}
             disabled={!user?.isGuardian}
-            isLoading={isLoading}
+            isLoading={isDownvoteLoading}
             className={
-              isDownvote ? "!bg-blue/10 font-extrabold" : "font-medium"
+              isCurrentDownvote ? "!bg-blue/10 font-extrabold" : "font-medium"
             }
           >
             <div className="flex items-center">
               <ThumbsDown
-                width={isDownvote ? 20 : 18}
-                height={isDownvote ? 20 : 18}
+                width={isCurrentDownvote ? 20 : 18}
+                height={isCurrentDownvote ? 20 : 18}
                 className={`mr-2 ${
-                  isDownvote ? "fill-current stroke-white" : ""
+                  isCurrentDownvote ? "fill-current stroke-white" : ""
                 }`}
               />
               <Text>Drop</Text>
@@ -110,22 +131,24 @@ export default function VoteControls({
 
       <div className="mr-2">
         {renderWithTooltip(
-          isUpvote ? "Remove vote" : "Up-vote",
+          isCurrentUpvote ? "Remove vote" : "Up-vote",
           <Button
             size={size}
             intent="outline"
             colorScheme="blue"
             onClick={handleHold}
             disabled={!user?.isGuardian}
-            isLoading={isLoading}
-            className={isUpvote ? "!bg-blue/10 font-extrabold" : "font-medium"}
+            isLoading={isUpvoteLoading}
+            className={
+              isCurrentUpvote ? "!bg-blue/10 font-extrabold" : "font-medium"
+            }
           >
             <div className="flex items-center">
               <ThumbsUp
-                width={isUpvote ? 20 : 18}
-                height={isUpvote ? 20 : 18}
+                width={isCurrentUpvote ? 20 : 18}
+                height={isCurrentUpvote ? 20 : 18}
                 className={`mr-2 ${
-                  isUpvote ? "fill-current stroke-white" : ""
+                  isCurrentUpvote ? "fill-current stroke-white" : ""
                 }`}
               />
               <Text>Hold</Text>

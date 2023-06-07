@@ -11,6 +11,8 @@ export const classes = cva(
     "border-2",
     "hover:scale-[1.02]",
     "h-full",
+    "flex",
+    "items-center",
   ],
   {
     variants: {

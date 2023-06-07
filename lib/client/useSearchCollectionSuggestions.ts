@@ -13,9 +13,7 @@ const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 const url = new URL(key, baseUrl);
 
 async function getSuggestions(query: string): Promise<SearchResponse> {
-  url.searchParams.append("query", query);
-
-  const res = await fetch(url.toString(), {
+  const res = await fetch(url.toString() + `?query=${query}`, {
     cache: "no-store",
   });
   return await res.json();
