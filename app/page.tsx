@@ -5,9 +5,9 @@ import hero from "../public/hero.png";
 
 export default function Index() {
   return (
-    <div className="w-full h-screen relative bg-background">
+    <div className="w-full h-screen relative bg-background mt-[-8vh]">
       <div className="container mx-auto h-full flex justify-between items-center">
-        <div className="w-2/5">
+        <div className="w-2/5 text-white">
           <div className="my-4">
             <Text intent="h2">Enter Guardians Portal</Text>
           </div>

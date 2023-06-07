@@ -18,18 +18,25 @@ export default async function Collection({
   const viewedItems = (page - 1) * pageSize + pageCount;
 
   return (
-    <div className="w-full px-6 flex flex-col justify-between">
-      <Header
-        settings={settings}
-        resultsCount={totalCount}
-        viewed={viewedItems}
-      />
+    <div className="w-full flex flex-col justify-between">
+      <div className="sticky top-[8vh] z-50 bg-line mt-3 pt-3 px-6 shadow-sm">
+        <Header
+          settings={settings}
+          resultsCount={totalCount}
+          viewed={viewedItems}
+          searchParams={searchParams}
+        />
+      </div>
 
-      <div className="flex-1 mb-4">
+      <div className="flex-1 p-6">
         <Container collection={collection} layout={settings.collectionLayout} />
       </div>
 
-      <Pagination page={page} totalCount={totalCount} pageSize={pageSize} />
+      {totalCount > 0 && (
+        <div className="p-6">
+          <Pagination page={page} totalCount={totalCount} pageSize={pageSize} />
+        </div>
+      )}
     </div>
   );
 }

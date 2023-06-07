@@ -1,5 +1,7 @@
 import { type UserSettings } from "@/lib/server/user-settings";
+import { type CustomNextPage } from "@/types";
 
+import { ClearFilters } from "../clear-filters";
 import { PlatformSelect } from "../platform-select";
 import { Results } from "../results";
 import { Search } from "../search";
@@ -8,16 +10,23 @@ import { SortSelect } from "../sort-select";
 import { ViewToggle } from "../view-toggle";
 
 interface IProps extends React.PropsWithChildren {
-  settings: UserSettings;
   resultsCount: number;
+  searchParams: CustomNextPage["searchParams"];
+  settings: UserSettings;
   viewed: number;
-  className?: string;
 }
 
-export default function Header({ settings, resultsCount, viewed }: IProps) {
+export default function Header({
+  resultsCount,
+  searchParams,
+  settings,
+  viewed,
+}: IProps) {
+  const hasSearchParams = !!searchParams && !!Object.keys(searchParams).length;
+
   return (
-    <div className="my-6">
-      <div className="grid grid-cols-12 gap-6 ">
+    <div>
+      <div className="grid grid-cols-12 gap-6">
         <div className="w-full h-12 col-span-2">
           <PlatformSelect />
         </div>
@@ -35,9 +44,24 @@ export default function Header({ settings, resultsCount, viewed }: IProps) {
         </div>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
-        <ShowMyVotes checked={settings.showVotedCollection} />
-        <Results resultsCount={resultsCount} viewed={viewed} />
+      <div className="grid grid-cols-12 gap-6">
+        {hasSearchParams && (
+          <div className="w-full h-12 col-span-8 flex items-center">
+            <ClearFilters />
+          </div>
+        )}
+
+        <div
+          className={`w-full h-12 ${
+            hasSearchParams ? "col-span-2" : "col-span-10"
+          }`}
+        >
+          <ShowMyVotes checked={settings.showVotedCollection} />
+        </div>
+
+        <div className="w-full h-12 col-span-2 flex items-center justify-end">
+          <Results resultsCount={resultsCount} viewed={viewed} />
+        </div>
       </div>
     </div>
   );

@@ -56,8 +56,8 @@ export default async function ItemCard({
         </Card>
       </Link>
 
-      <div className="flex items-center justify-between">
-        <div className="my-4">
+      <div className="flex items-center justify-between mt-3">
+        <div>
           <VoteControls
             collectionId={id}
             currentVote={currentVote}

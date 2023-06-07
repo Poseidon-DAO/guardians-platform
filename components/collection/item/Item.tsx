@@ -56,6 +56,7 @@ export default function Item({
           alt={description}
           priority
           fill
+          sizes="30vw"
           className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-110"
         />
       </Card>

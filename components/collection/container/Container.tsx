@@ -2,6 +2,8 @@ import { type Collection } from "@/lib/server/collection";
 
 import { Grid } from "../grid";
 import { Table } from "../table";
+import { EmptyScreen } from "../empty-screen";
+
 import { type LayoutTypes } from "../view-toggle/ViewToggle";
 
 interface IProps extends React.PropsWithChildren {
@@ -11,7 +13,7 @@ interface IProps extends React.PropsWithChildren {
 
 export default function Container({ collection, layout }: IProps) {
   if (!collection.length) {
-    return <div>NO DATA</div>;
+    return <EmptyScreen />;
   }
 
   if (layout === "table") {

@@ -17,7 +17,7 @@ export type LayoutTypes = "grid" | "table" | "big-grid";
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
 const toggleGroupItemClasses =
-  "data-[state=on]:bg-blue data-[state=on]:text-white flex h-full w-[33%] items-center justify-center bg-white first:rounded-l-lg last:rounded-r-lg focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background focus:outline-none";
+  "data-[state=on]:bg-blue data-[state=on]:text-white flex h-full flex-grow items-center justify-center bg-white first:rounded-l-lg last:rounded-r-lg focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background focus:outline-none";
 
 export default function ViewToggle({ layout }: IProps) {
   const router = useRouter();
