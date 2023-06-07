@@ -2,12 +2,15 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { Text } from "@/components/text";
+import useRevalidate from "@/lib/client/useRevalidate";
 
 export default function ClearFilters() {
+  const { mutate: revalidate } = useRevalidate();
   const router = useRouter();
   const pathname = usePathname();
 
   function handleClick() {
+    revalidate("collection");
     router.push(pathname);
   }
 

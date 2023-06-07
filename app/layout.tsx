@@ -19,7 +19,7 @@ export default function RootLayout({ children, modal }: IProps) {
       <body className="bg-line">
         <Providers>
           <Header />
-          <div className="min-h-[92vh] pt-[8vh]">{children}</div>
+          <div className="min-h-[100vh] pt-[8vh]">{children}</div>
           {modal}
         </Providers>
       </body>

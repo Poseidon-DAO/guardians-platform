@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
@@ -28,6 +28,10 @@ export default function Pagination({
   totalCount,
 }: IProps) {
   const [currentPage, setCurrentPage] = useState(page);
+
+  useEffect(() => {
+    setCurrentPage(page);
+  }, [page]);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -66,6 +70,7 @@ export default function Pagination({
           colorScheme="indigo"
           className="rounded-r-none bg-white mr-[2px]"
           disabled={currentPage === 1}
+          onClick={() => handleLayoutChange((currentPage - 1).toString())}
         >
           <ChevronLeft />
         </Button>
@@ -102,6 +107,7 @@ export default function Pagination({
           colorScheme="indigo"
           className="rounded-l-none bg-white ml-[2px]"
           disabled={lastPage === currentPage}
+          onClick={() => handleLayoutChange((currentPage + 1).toString())}
         >
           <ChevronRight />
         </Button>

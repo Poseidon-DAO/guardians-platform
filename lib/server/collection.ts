@@ -62,7 +62,10 @@ export async function getCollection(
   const userId = cookies().get("userId")?.value;
   url.searchParams.append("userId", userId as string);
 
-  const res = await fetch(url.toString() /*{ cache: "force-cache" }*/);
+  const res = await fetch(url.toString(), {
+    cache: "force-cache",
+    next: { tags: ["collection"] },
+  });
 
   if (!res.ok) throw new Error(res.statusText);
   const collection = (await res.json()) as {

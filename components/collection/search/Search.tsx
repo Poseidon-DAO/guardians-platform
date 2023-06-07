@@ -110,6 +110,8 @@ export default function Search(props: IProps) {
                     src={suggestion.image}
                     alt={suggestion.title}
                     fill
+                    priority
+                    sizes="36px"
                     className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-110"
                   />
                 </div>

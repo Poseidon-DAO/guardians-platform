@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 export type User = {
-  id: number;
+  id: string;
   address: string;
   createdAt: Date;
   updatedAt: Date;
