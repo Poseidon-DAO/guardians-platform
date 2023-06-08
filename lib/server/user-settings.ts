@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { type LayoutTypes } from "@/components/collection/view-toggle/ViewToggle";
-
-import { type ThemeTypes } from "../client";
+import { ThemeTypes } from "@/components/switch-theme/SwitchTheme";
 
 export type UserSettings = {
   id: number;

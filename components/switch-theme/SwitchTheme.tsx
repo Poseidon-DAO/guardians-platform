@@ -2,27 +2,38 @@
 
 import useSettings from "@/lib/client/useSettings";
 import { useRouter } from "next/navigation";
+import { Moon } from "react-feather";
+
+import { Switch } from "../ui";
 
 export type ThemeTypes = "dark" | "light";
 
 interface IProps {
-  theme: ThemeTypes;
+  theme?: ThemeTypes;
 }
 
-export default function SwitchTheme({ theme }: IProps) {
+export default function SwitchTheme({ theme = "light" }: IProps) {
   const router = useRouter();
   const { mutate: setSettings } = useSettings({
     fieldToUpdate: "theme",
     onSuccess: () => router.refresh(),
   });
 
-  function handleClick() {
-    setSettings({ fieldValue: theme === "dark" ? "light" : "dark" });
+  function handleThemeChange(checked: boolean) {
+    setSettings({ fieldValue: checked ? "dark" : "light" });
   }
 
   return (
-    <div className="text-white" onClick={handleClick}>
-      SWITCH THEME {theme}
+    <div className="flex items-center">
+      <div className="pr-4">
+        <Moon />
+      </div>
+
+      <Switch
+        checked={theme === "dark"}
+        onChange={handleThemeChange}
+        label="Night mode"
+      />
     </div>
   );
 }

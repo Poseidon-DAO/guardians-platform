@@ -13,9 +13,12 @@ async function logout() {
   return await res.json();
 }
 
-export default function useLogout() {
+export default function useLogout({
+  onSuccess,
+}: { onSuccess?: () => void } = {}) {
   return useMutation({
     mutationFn: logout,
     mutationKey: [key],
+    onSuccess,
   });
 }

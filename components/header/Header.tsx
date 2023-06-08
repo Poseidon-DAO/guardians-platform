@@ -1,30 +1,28 @@
-import { ConnectButton, Logo, SwitchTheme } from "@/components";
+import { ConnectButton, Logo } from "@/components";
 
+import HeaderWrapper from "./HeaderWrapper";
 import { ProfilePopover } from "../profile-popover";
 import { type ThemeTypes } from "../switch-theme/SwitchTheme";
 
-import HeaderWrapper from "./HeaderWrapper";
-
 interface IProps {
-  theme: ThemeTypes;
+  isConnected: boolean;
+  theme?: ThemeTypes;
 }
 
-export default function Header({ theme }: IProps) {
+export default function Header({ isConnected, theme }: IProps) {
   return (
     <header className="w-full fixed bg-blue dark:bg-background z-50">
       <HeaderWrapper>
         <Logo />
 
         <div className="flex items-center">
-          <div className="mr-2">
-            <SwitchTheme theme={theme} />
-          </div>
-          <div className="mr-2">
-            <ConnectButton />
-          </div>
-          <div>
-            <ProfilePopover />
-          </div>
+          <ConnectButton />
+
+          {isConnected && (
+            <div className="ml-2">
+              <ProfilePopover theme={theme} />
+            </div>
+          )}
         </div>
       </HeaderWrapper>
     </header>

@@ -16,19 +16,29 @@ export default function ConnectButton() {
   const pathname = usePathname();
 
   const user = useUserStore((state) => state.user);
+  const setUser = useUserStore((state) => state.setUser);
 
   const {
     mutate: registerOrLogin,
     data,
-    isSuccess: isRegisterOrLoginSuccess,
     isLoading: isRegistringOrLoggingIn,
-  } = useRegisterOrLogin();
+  } = useRegisterOrLogin({
+    onSuccess: (data) => {
+      setUser(data);
 
-  const {
-    mutate: logout,
-    isSuccess: isLogoutSuccess,
-    isLoading: isLoggingOut,
-  } = useLogout();
+      if (pathname === "/") {
+        router.refresh();
+        router.push("/collection");
+      }
+    },
+  });
+
+  const { mutate: logout, isLoading: isLoggingOut } = useLogout({
+    onSuccess: () => {
+      router.refresh();
+      router.push("/");
+    },
+  });
 
   const { connector } = useAccount({
     onConnect({ address, isReconnected }) {
@@ -42,28 +52,6 @@ export default function ConnectButton() {
       logout();
     },
   });
-
-  const setUser = useUserStore((state) => state.setUser);
-
-  useEffect(() => {
-    if (data?.id) {
-      setUser(data);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.id]);
-
-  useEffect(() => {
-    if (isRegisterOrLoginSuccess && pathname === "/") {
-      router.push("/collection");
-    }
-
-    if (isLogoutSuccess) {
-      router.push("/");
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRegisterOrLoginSuccess, isLogoutSuccess]);
 
   useEffect(() => {
     function onAccountChange({ account }: ConnectorData) {

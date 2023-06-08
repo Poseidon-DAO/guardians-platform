@@ -22,9 +22,12 @@ async function registerOrLogin(address: string): Promise<User> {
   return await res.json();
 }
 
-export default function useRegisterOrLogin() {
+export default function useRegisterOrLogin({
+  onSuccess,
+}: { onSuccess?: (data: User) => void } = {}) {
   return useMutation({
     mutationFn: (query: string) => registerOrLogin(query),
     mutationKey: [key],
+    onSuccess,
   });
 }

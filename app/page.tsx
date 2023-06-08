@@ -1,4 +1,4 @@
-import { Text, ConnectButton, Header } from "@/components";
+import { Text, ConnectButton } from "@/components";
 import Image from "next/image";
 
 import hero from "../public/hero.png";

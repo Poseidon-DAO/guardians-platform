@@ -2,6 +2,7 @@
 
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { List, Grid } from "react-feather";
 
 import useSettings from "@/lib/client/useSettings";
@@ -17,8 +18,11 @@ const toggleGroupItemClasses =
   "data-[state=on]:bg-blue data-[state=on]:text-white flex h-full flex-grow items-center justify-center bg-white first:rounded-l-lg last:rounded-r-lg focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background focus:outline-none";
 
 export default function ViewToggle({ layout }: IProps) {
+  const router = useRouter();
+
   const { mutate: setSettings } = useSettings({
     fieldToUpdate: "collectionLayout",
+    onSuccess: () => router.refresh(),
   });
 
   const [localLayout, setLocalLayout] = useState(layout);

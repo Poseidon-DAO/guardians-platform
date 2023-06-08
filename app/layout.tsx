@@ -5,6 +5,7 @@ import { Header } from "@/components";
 import { getUserSettings } from "@/lib/server";
 
 import { Providers } from "./providers";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: "Guardians",
@@ -16,13 +17,14 @@ interface IProps extends React.PropsWithChildren {
 }
 
 export default async function RootLayout({ children, modal }: IProps) {
-  const { theme } = await getUserSettings();
+  const userSettings = await getUserSettings();
+  const isConnected = !!cookies().get("userId")?.value;
 
   return (
-    <html lang="en" className={theme === "dark" ? "dark" : ""}>
+    <html lang="en" className={userSettings?.theme === "dark" ? "dark" : ""}>
       <body className="bg-line">
         <Providers>
-          <Header theme={theme} />
+          <Header theme={userSettings?.theme} isConnected={isConnected} />
           <div className="min-h-[100vh] pt-[8vh]">{children}</div>
           {modal}
         </Providers>

@@ -1,3 +1,4 @@
+import React, { forwardRef } from "react";
 import clsx from "clsx";
 import { Spinner } from "../ui";
 
@@ -9,31 +10,41 @@ interface IProps
   isLoading?: boolean;
 }
 
-export default function Button({
-  intent,
-  size,
-  colorScheme,
-  className,
-  children,
-  disabled,
-  isLoading = false,
-  ...props
-}: IProps) {
-  return (
-    <span className={clsx(null, disabled && "cursor-not-allowed")}>
-      <button
-        className={classes({
-          className,
-          intent,
-          size,
-          colorScheme,
-          disabled,
-        })}
-        {...props}
-      >
-        {children}
-        {isLoading && <Spinner size="xs" className="mx-2" />}
-      </button>
-    </span>
-  );
-}
+const Button = forwardRef<HTMLButtonElement, IProps>(
+  (
+    {
+      intent,
+      size,
+      colorScheme,
+      className,
+      children,
+      disabled,
+      isLoading = false,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <span className={clsx(null, disabled && "cursor-not-allowed")}>
+        <button
+          ref={ref}
+          className={classes({
+            className,
+            intent,
+            size,
+            colorScheme,
+            disabled,
+          })}
+          {...props}
+        >
+          {children}
+          {isLoading && <Spinner size="xs" className="mx-2" />}
+        </button>
+      </span>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export default Button;
