@@ -4,8 +4,8 @@ export const classes = cva(["input px-4"], {
   variants: {
     size: {
       small: ["text-md", "py-1"],
-      medium: ["text-lg", "py-2"],
-      large: ["text-xlg", "py-4"],
+      medium: ["text-md", "py-2"],
+      large: ["text-lg", "py-4"],
     },
   },
   defaultVariants: {

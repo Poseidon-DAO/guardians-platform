@@ -11,7 +11,7 @@ interface IProps {
 
 export default function Header({ isConnected, theme }: IProps) {
   return (
-    <header className="w-full fixed bg-blue dark:bg-background z-50">
+    <header className="w-full fixed bg-blue dark:bg-background z-50 dark:border-b-[1.5px] dark:border-darkBorder">
       <HeaderWrapper>
         <Logo />
 

@@ -24,18 +24,18 @@ export default function ProfilePopover({ theme }: IProps) {
       <Popover.Trigger asChild>
         <Button
           intent="contained"
+          colorScheme={theme === "light" ? "white" : "indigo"}
           size="small"
-          colorScheme="white"
-          className="!input !w-10 !h-10 flex items-center justify-center"
+          className="input !w-10 !h-10 flex justify-center items-center"
         >
-          <div className="border-2 border-background rounded-full">
-            <User className="text-background" size={18} />
+          <div className="border-2 border-background dark:border-white rounded-full">
+            <User className="text-background dark:text-white" size={18} />
           </div>
         </Button>
       </Popover.Trigger>
 
       <Popover.Content
-        className="p-5  overflow-hidden bg-white rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
+        className="p-5 overflow-hidden bg-white dark:bg-darkPopover rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
         sideOffset={8}
         align="end"
       >

@@ -17,7 +17,7 @@ export interface IProps extends React.PropsWithChildren {
 }
 
 const toggleGroupItemClasses =
-  "data-[state=on]:bg-blue data-[state=on]:text-white flex h-full w-14 items-center justify-center bg-white focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background focus:outline-none";
+  "data-[state=on]:bg-blue dark:data-[state=on]:bg-darkBorder data-[state=on]:text-white dark:border-[1.5px] dark:border-darkBorder flex h-full w-14 items-center justify-center bg-white dark:bg-background focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background dark:focus:shadow-darkPopover focus:outline-none";
 
 export const QUERY_KEY = "page";
 
@@ -68,7 +68,7 @@ export default function Pagination({
         <Button
           intent="text"
           colorScheme="indigo"
-          className="rounded-r-none bg-white mr-[2px]"
+          className="rounded-r-none bg-white dark:bg-background dark:text-white dark:border-[1.5px] dark:border-darkBorder mr-[2px]"
           disabled={currentPage === 1}
           onClick={() => handleLayoutChange((currentPage - 1).toString())}
         >
@@ -105,7 +105,7 @@ export default function Pagination({
         <Button
           intent="text"
           colorScheme="indigo"
-          className="rounded-l-none bg-white ml-[2px]"
+          className="rounded-l-none bg-white dark:bg-background dark:text-white dark:border-[1.5px] dark:border-darkBorder ml-[2px]"
           disabled={lastPage === currentPage}
           onClick={() => handleLayoutChange((currentPage + 1).toString())}
         >

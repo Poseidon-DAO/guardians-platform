@@ -4,7 +4,7 @@
 @tailwind components;
 
 .input {
-  @apply rounded-lg bg-white shadow-[0_2px_10px] shadow-black/10 focus:shadow-[0_0_0_2px] focus:shadow-background outline-none;
+  @apply rounded-lg bg-white dark:bg-background dark:border-[1.5px] dark:border-darkBorder font-medium shadow-[0_2px_10px] shadow-black/10 focus:shadow-[0_0_0_2px] focus:shadow-background outline-none;
 }
 
 @tailwind utilities;
@@ -17,5 +17,9 @@
   html {
     font-family: Ubuntu;
     color: #1f2046;
+  }
+
+  html.dark {
+    color: white;
   }
 }

@@ -15,7 +15,7 @@ interface IProps extends React.PropsWithChildren {
 export type LayoutTypes = "grid" | "table" | "big-grid";
 
 const toggleGroupItemClasses =
-  "data-[state=on]:bg-blue data-[state=on]:text-white flex h-full flex-grow items-center justify-center bg-white first:rounded-l-lg last:rounded-r-lg focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background focus:outline-none";
+  "data-[state=on]:bg-blue data-[state=on]:text-white dark:data-[state=on]:bg-darkBorder flex h-full flex-grow items-center justify-center bg-white dark:bg-background first:rounded-l-md last:rounded-r-md focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background dark:focus:shadow-darkPopover focus:outline-none";
 
 export default function ViewToggle({ layout }: IProps) {
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function ViewToggle({ layout }: IProps) {
       <ToggleGroup.Item
         className={[
           toggleGroupItemClasses,
-          "border-l-[1px] border-r-[1px] border-line data-[state=on]:border-0",
+          "border-l-[1px] border-r-[1px] border-line dark:border-darkBorder data-[state=on]:border-0",
         ].join(" ")}
         value="grid"
         aria-label="Column view"

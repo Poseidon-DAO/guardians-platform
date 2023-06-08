@@ -52,7 +52,7 @@ export default function PlatformSelect(props: IProps) {
         <Select.Content
           position="popper"
           sideOffset={8}
-          className="w-select-width z-[2] overflow-hidden bg-white rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
+          className="w-select-width z-[2] overflow-hidden bg-white dark:bg-darkPopover rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
         >
           <Select.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white cursor-default">
             <ChevronUp />
@@ -88,7 +88,7 @@ const SelectItem = forwardRef<HTMLDivElement | null, Props>(
     return (
       <Select.Item
         className={clsx(
-          "leading-none rounded-lg flex items-center py-3 pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue data-[highlighted]:text-white",
+          "leading-none rounded-lg flex items-center py-3 pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue dark:data-[highlighted]:bg-darkBorder data-[highlighted]:text-white",
           className
         )}
         {...props}

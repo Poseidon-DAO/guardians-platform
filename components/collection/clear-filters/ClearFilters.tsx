@@ -18,7 +18,7 @@ export default function ClearFilters() {
     <div>
       <Text
         onClick={handleClick}
-        className="cursor-pointer text-sm !text-blue font-medium underline"
+        className="cursor-pointer text-sm dark:text-red text-blue font-medium underline"
       >
         Clear filters
       </Text>

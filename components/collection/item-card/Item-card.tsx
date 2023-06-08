@@ -43,7 +43,7 @@ export default async function ItemCard({
               gridsLength === 3 ? "33vw" : "20vw"
             }`}
           />
-          <div className="flex flex-col-reverse text-white p-4 absolute w-full h-full bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none">
+          <div className="flex flex-col-reverse rounded-lg overflow-hidden text-white p-4 absolute w-full h-full bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none">
             <div className="pointer-events-auto">
               <Text size="small" className="line-clamp-1">
                 {createdBy}
@@ -62,6 +62,7 @@ export default async function ItemCard({
             collectionId={id}
             currentVote={currentVote}
             size={settings.collectionLayout === "grid" ? "medium" : "small"}
+            theme={settings.theme}
           />
         </div>
 

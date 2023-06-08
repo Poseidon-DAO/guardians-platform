@@ -12,17 +12,20 @@ import useRevalidate from "@/lib/client/useRevalidate";
 import { Button } from "../button";
 import { Text } from "../text";
 import { Tooltip } from "../ui";
+import { type ThemeTypes } from "../switch-theme/SwitchTheme";
 
 interface IProps extends React.PropsWithChildren {
   collectionId: string;
-  size?: ComponentProps<typeof Button>["size"];
   currentVote?: Vote;
+  theme?: ThemeTypes;
+  size?: ComponentProps<typeof Button>["size"];
 }
 
 export default function VoteControls({
   collectionId,
-  size,
   currentVote,
+  theme,
+  size,
 }: IProps) {
   const { address } = useAccount();
   const user = useUserStore((state) => state.user);
@@ -106,13 +109,15 @@ export default function VoteControls({
           isCurrentDownvote ? "Remove vote" : "Down-vote",
           <Button
             size={size}
-            intent="outline"
-            colorScheme="blue"
+            intent={theme === "light" ? "outline" : "contained"}
+            colorScheme={theme === "light" ? "blue" : "indigo"}
             onClick={handleDrop}
             disabled={!user?.isGuardian}
             isLoading={isDownvoteLoading}
             className={
-              isCurrentDownvote ? "!bg-blue/10 font-extrabold" : "font-medium"
+              isCurrentDownvote
+                ? "bg-blue/10 font-extrabold dark:bg-darkBorder dark:border-2"
+                : "font-medium dark:border-2 dark:border-darkBorder dark:bg-inherit"
             }
           >
             <div className="flex items-center">
@@ -120,7 +125,9 @@ export default function VoteControls({
                 width={isCurrentDownvote ? 20 : 18}
                 height={isCurrentDownvote ? 20 : 18}
                 className={`mr-2 ${
-                  isCurrentDownvote ? "fill-current stroke-white" : ""
+                  isCurrentDownvote
+                    ? "fill-current stroke-white dark:stroke-darkBorder"
+                    : ""
                 }`}
               />
               <Text>Drop</Text>
@@ -134,13 +141,15 @@ export default function VoteControls({
           isCurrentUpvote ? "Remove vote" : "Up-vote",
           <Button
             size={size}
-            intent="outline"
-            colorScheme="blue"
+            intent={theme === "light" ? "outline" : "contained"}
+            colorScheme={theme === "light" ? "blue" : "indigo"}
             onClick={handleHold}
             disabled={!user?.isGuardian}
             isLoading={isUpvoteLoading}
             className={
-              isCurrentUpvote ? "!bg-blue/10 font-extrabold" : "font-medium"
+              isCurrentUpvote
+                ? "bg-blue/10 font-extrabold dark:bg-darkBorder dark:border-2"
+                : "font-medium dark:border-2 dark:border-darkBorder dark:bg-inherit"
             }
           >
             <div className="flex items-center">
@@ -148,7 +157,9 @@ export default function VoteControls({
                 width={isCurrentUpvote ? 20 : 18}
                 height={isCurrentUpvote ? 20 : 18}
                 className={`mr-2 ${
-                  isCurrentUpvote ? "fill-current stroke-white" : ""
+                  isCurrentUpvote
+                    ? "fill-current stroke-white dark:stroke-darkBorder"
+                    : ""
                 }`}
               />
               <Text>Hold</Text>

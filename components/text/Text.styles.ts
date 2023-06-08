@@ -1,6 +1,6 @@
 import { cva, VariantProps as CvaVariantProps } from "class-variance-authority";
 
-export const classes = cva("text-inherit", {
+export const classes = cva(null, {
   variants: {
     intent: {
       text: ["text-base"],
@@ -36,7 +36,6 @@ export const classes = cva("text-inherit", {
   },
   defaultVariants: {
     intent: "text",
-    textColor: "indigo",
   },
 });
 

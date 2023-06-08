@@ -26,6 +26,8 @@ module.exports = {
         black: "#000",
         transparent: "transparent",
         line: "rgb(243 244 246)",
+        darkBorder: "#334155",
+        darkPopover: "#1e293b",
       },
     },
     fontFamily: {

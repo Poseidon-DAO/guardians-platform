@@ -65,7 +65,7 @@ export default function Modal({
           <div className="fixed z-50 top-0 left-0 w-screen h-screen flex items-center justify-center bg-black bg-opacity-60">
             <div
               className={[
-                "bg-white rounded-lg p-4 min-w-[300px]",
+                "bg-white dark:bg-darkPopover rounded-lg p-4 min-w-[300px]",
                 className,
               ].join(" ")}
             >

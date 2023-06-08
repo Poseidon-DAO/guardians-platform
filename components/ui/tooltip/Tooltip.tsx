@@ -37,7 +37,7 @@ export default function Tooltip({
           sideOffset={8}
           align="center"
           className={[
-            "bg-background text-white text-center rounded-lg px-4 py-2 z-10",
+            "bg-background dark:bg-darkBorder text-white text-center rounded-lg px-4 py-2 z-10",
             className,
           ].join(" ")}
         >
@@ -46,7 +46,7 @@ export default function Tooltip({
           <RadixTooltip.Arrow
             width={11}
             height={5}
-            className="fill-background"
+            className="fill-background dark:fill-darkBorder"
           />
         </RadixTooltip.Content>
       </RadixTooltip.Root>
