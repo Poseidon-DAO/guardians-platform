@@ -119,7 +119,7 @@ export default function Search(props: IProps) {
             ))}
 
           {suggestions?.length === 0 && isSuccess && !isLoading && (
-            <Text textColor="purple" size="small" className="py-2">
+            <Text size="small" className="py-2">
               No suggestions found for &quot;{query}&quot;
             </Text>
           )}

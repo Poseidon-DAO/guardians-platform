@@ -1,10 +1,12 @@
 import { cookies } from "next/headers";
 import { type LayoutTypes } from "@/components/collection/view-toggle/ViewToggle";
 
+import { type ThemeTypes } from "../client";
+
 export type UserSettings = {
   id: number;
   userId: string;
-  theme: string;
+  theme: ThemeTypes;
   collectionLayout: LayoutTypes;
   showVotedCollection: boolean;
   createdAt: Date;

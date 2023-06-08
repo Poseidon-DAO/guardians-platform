@@ -30,6 +30,7 @@ export const classes = cva(
         blue: "text-blue",
         red: "text-red",
         indigo: "text-background",
+        white: "text-white",
       },
       disabled: {
         true: "text-purple pointer-events-none border-purple opacity-60",
@@ -66,6 +67,16 @@ export const classes = cva(
         intent: "outline",
         colorScheme: "indigo",
         className: "border-background",
+      },
+      {
+        intent: "contained",
+        colorScheme: "white",
+        className: "bg-white text-background hover:bg-line",
+      },
+      {
+        intent: "outline",
+        colorScheme: "white",
+        className: "border-line text-background",
       },
       {
         intent: "contained",

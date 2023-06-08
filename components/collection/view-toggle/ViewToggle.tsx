@@ -1,11 +1,10 @@
 "use client";
 
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { List, Grid } from "react-feather";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { List, Grid } from "react-feather";
 
-import { useUserStore } from "@/zustand/user";
+import useSettings from "@/lib/client/useSettings";
 
 interface IProps extends React.PropsWithChildren {
   layout: LayoutTypes;
@@ -14,38 +13,20 @@ interface IProps extends React.PropsWithChildren {
 
 export type LayoutTypes = "grid" | "table" | "big-grid";
 
-const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
-
 const toggleGroupItemClasses =
   "data-[state=on]:bg-blue data-[state=on]:text-white flex h-full flex-grow items-center justify-center bg-white first:rounded-l-lg last:rounded-r-lg focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-background focus:outline-none";
 
 export default function ViewToggle({ layout }: IProps) {
-  const router = useRouter();
-  const user = useUserStore((state) => state.user);
+  const { mutate: setSettings } = useSettings({
+    fieldToUpdate: "collectionLayout",
+  });
 
   const [localLayout, setLocalLayout] = useState(layout);
 
-  async function handleLayoutChange(value: LayoutTypes) {
-    if (!!value) {
-      setLocalLayout(value);
-      const url = new URL("/user/settings", baseUrl);
-
-      const res = await fetch(url.toString(), {
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          userId: user?.id,
-          collectionLayout: value,
-        }),
-      });
-      if (res.ok) {
-        setLocalLayout(value);
-        router.refresh();
-      }
-    }
+  async function handleLayoutChange(layout: LayoutTypes) {
+    if (!layout) return;
+    setLocalLayout(layout);
+    setSettings({ fieldValue: layout });
   }
 
   return (

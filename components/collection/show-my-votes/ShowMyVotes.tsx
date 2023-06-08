@@ -6,7 +6,6 @@ import { Check } from "react-feather";
 
 import useRevalidate from "@/lib/client/useRevalidate";
 import useSettings from "@/lib/client/useSettings";
-import { useUserStore } from "@/zustand/user";
 
 interface IProps extends React.PropsWithChildren {
   checked: boolean;
@@ -17,17 +16,15 @@ interface IProps extends React.PropsWithChildren {
 export default function ShowMyVotes({ checked }: IProps) {
   const { mutate: revalidate } = useRevalidate();
   const { mutate: setSettings } = useSettings({
+    fieldToUpdate: "showVotedCollection",
     onSuccess: () => revalidate("collection"),
   });
-
-  const user = useUserStore((state) => state.user);
 
   const [localChecked, setLocalChecked] = useState(checked);
 
   async function handleChange(status: boolean) {
-    if (!user) return;
     setLocalChecked(status);
-    setSettings({ status, userId: user?.id });
+    setSettings({ fieldValue: status });
   }
 
   return (
