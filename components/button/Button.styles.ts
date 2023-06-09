@@ -72,12 +72,12 @@ export const classes = cva(
       {
         intent: "contained",
         colorScheme: "white",
-        className: "bg-white text-current",
+        className: "bg-white !text-background",
       },
       {
         intent: "outline",
         colorScheme: "white",
-        className: "border-white text-current",
+        className: "border-white !text-background",
       },
     ],
     defaultVariants: {
