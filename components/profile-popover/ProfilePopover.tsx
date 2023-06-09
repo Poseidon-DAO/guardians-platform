@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import SwitchTheme, { type ThemeTypes } from "../switch-theme/SwitchTheme";
 
-import { Button } from "../button";
+import { Button } from "../ui/button";
 
 interface IProps {
   theme?: ThemeTypes;

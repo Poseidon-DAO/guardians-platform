@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 import { Input } from "@/components/ui";
-import { Text } from "@/components/text";
+import { Text } from "@/components/ui/text";
 import { createQueryString } from "@/utils/utils/url";
 import { useClickOutside } from "@/hooks/core";
 import useDebounce from "@/hooks/core/useDebounce";

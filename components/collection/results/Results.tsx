@@ -1,4 +1,4 @@
-import { Text } from "@/components/text";
+import { Text } from "@/components/ui/text";
 
 interface IProps extends React.PropsWithChildren {
   resultsCount: number;

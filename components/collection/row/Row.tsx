@@ -5,7 +5,7 @@ import { getUserSettings } from "@/lib/server";
 import { type Collection } from "@/lib/server/collection";
 
 import { VoteControls } from "../../vote-controls";
-import { Text } from "../../text";
+import { Text } from "../../ui/text";
 
 interface IProps extends React.PropsWithChildren, Collection {}
 

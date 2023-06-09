@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import clsx from "clsx";
-import { Spinner } from "../ui";
+import { Spinner } from "..";
 
 import { classes, VariantProps } from "./Button.styles";
 

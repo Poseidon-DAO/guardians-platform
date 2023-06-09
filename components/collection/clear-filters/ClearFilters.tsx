@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { Text } from "@/components/text";
+import { Text } from "@/components/ui/text";
 import useRevalidate from "@/lib/client/useRevalidate";
 
 export default function ClearFilters() {

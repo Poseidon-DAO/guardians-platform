@@ -8,8 +8,8 @@ import formatAddress from "@/utils/formatAddress";
 import { type Collection } from "@/lib/server/collection";
 import { type UserSettings } from "@/lib/server";
 
-import { Card } from "../../card";
-import { Text } from "../../text";
+import { Card } from "../../ui/card";
+import { Text } from "../../ui/text";
 import { VoteControls } from "../../vote-controls";
 
 interface IProps extends React.PropsWithChildren {

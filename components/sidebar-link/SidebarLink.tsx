@@ -5,8 +5,8 @@ import { Settings, User, Icon, Image, Send } from "react-feather";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
-import { Text } from "../text";
-import { Card } from "../card";
+import { Text } from "../ui/text";
+import { Card } from "../ui/card";
 
 const icons: Record<string, Icon> = {
   Settings,

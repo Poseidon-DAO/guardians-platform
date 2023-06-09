@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 import { Button } from "@/components";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createQueryString } from "@/utils/utils/url";
 import { usePagination } from "@/hooks";
 

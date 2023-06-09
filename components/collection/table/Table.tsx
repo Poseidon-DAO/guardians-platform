@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { GridItem } from "@/components/grid-skeleton/GridSkeleton";
-import { Text } from "@/components/text";
+import { Text } from "@/components/ui/text";
 import { type Collection } from "@/lib/server/collection";
 
 import { Row } from "../row";

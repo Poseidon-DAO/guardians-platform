@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { ConnectButton as RainbowConnectButton } from "@rainbow-me/rainbowkit";
 import { type ConnectorData, useAccount } from "wagmi";
@@ -9,11 +10,9 @@ import { useUserStore } from "@/zustand/user";
 import useRegisterOrLogin from "@/lib/client/useRegisterOrLogin";
 import useLogout from "@/lib/client/useLogout";
 
-import { Spinner } from "../ui";
-import { Button } from "../button";
+import { Spinner, Button } from "../ui";
 import { ProfilePopover } from "../profile-popover";
 import { type ThemeTypes } from "../switch-theme/SwitchTheme";
-import Image from "next/image";
 
 interface IProps {
   theme?: ThemeTypes;

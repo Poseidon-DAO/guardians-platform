@@ -3,15 +3,13 @@
 import { useState, type ComponentProps, type ReactNode } from "react";
 import { useAccount } from "wagmi";
 import { ThumbsDown, ThumbsUp } from "react-feather";
-import { useUserStore } from "@/zustand/user";
 
-import { type Vote } from "@/lib/server";
 import useVote from "@/lib/client/useVote";
 import useRevalidate from "@/lib/client/useRevalidate";
+import { useUserStore } from "@/zustand/user";
+import { type Vote } from "@/lib/server";
 
-import { Button } from "../button";
-import { Text } from "../text";
-import { Tooltip } from "../ui";
+import { Button, Text, Tooltip } from "../ui";
 import { type ThemeTypes } from "../switch-theme/SwitchTheme";
 
 interface IProps extends React.PropsWithChildren {

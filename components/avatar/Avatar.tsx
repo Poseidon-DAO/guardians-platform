@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 
-import { Text } from "../text";
+import { Text } from "../ui/text";
 import { Tooltip } from "../ui/tooltip";
 
 const tooltipTexts = {

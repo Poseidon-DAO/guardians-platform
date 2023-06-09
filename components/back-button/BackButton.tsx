@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "react-feather";
-import { Text } from "../text";
+import { Text } from "../ui/text";
 
 export default function BackButton() {
   const router = useRouter();
