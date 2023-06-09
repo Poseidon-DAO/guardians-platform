@@ -16,6 +16,8 @@ export default async function Row({
   title,
   votes,
   createdBy,
+  tokenUriRaw,
+  tokenId,
 }: IProps) {
   const settings = await getUserSettings();
   const currentVote = votes.find(
@@ -24,21 +26,22 @@ export default async function Row({
 
   return (
     <Link href={`/collection/${id}`}>
-      <div className="bg-white dark:bg-background overflow-hidden p-4 flex items-center justify-between rounded-lg dark:border-[1.5px] border-[1.5px] border-line dark:border-darkBorder my-4">
-        <div className="relative w-60 h-32">
+      <div className="bg-white dark:bg-background overflow-hidden p-4 flex items-center rounded-lg dark:border-[1.5px] border-[1.5px] border-line dark:border-darkBorder my-4">
+        <div className="relative w-80 mr-16 h-52 border-[1.5px] border-line dark:border-darkBorder rounded-lg bg-line dark:bg-darkBorder">
           <Image
             fill
             src={image}
             alt={description}
-            className="object-cover object-center rounded-lg transition transform duration-500 hover:scale-105"
-            sizes="15rem"
+            className="object-contain rounded-lg transition transform duration-500 hover:scale-105"
+            sizes="20rem"
           />
         </div>
 
-        <Text className="w-1/4 text-left">{title}</Text>
-        <Text className="w-1/4 text-left">{createdBy}</Text>
+        <Text className="flex-1 mx-2 font-medium">{title}</Text>
+        <Text className="w-1/6 mx-2 font-medium">{createdBy}</Text>
+        <Text className="w-1/6 mx-2 font-medium">{parseInt(tokenId, 16)}</Text>
 
-        <div className="my-4">
+        <div className="w-52 flex justify-end">
           <VoteControls
             collectionId={id}
             currentVote={currentVote}

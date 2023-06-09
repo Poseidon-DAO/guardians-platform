@@ -6,6 +6,7 @@ import { ThumbsDown, ThumbsUp } from "react-feather";
 import formatAddress from "@/utils/formatAddress";
 
 import { type Collection } from "@/lib/server/collection";
+import { type UserSettings } from "@/lib/server";
 
 import { Card } from "../../card";
 import { Text } from "../../text";
@@ -13,6 +14,7 @@ import { VoteControls } from "../../vote-controls";
 
 interface IProps extends React.PropsWithChildren {
   item: Collection;
+  settings: UserSettings;
   type?: "modal" | "page";
 }
 
@@ -33,6 +35,7 @@ export default function Item({
     tokenType,
     tokenUriRaw,
   },
+  settings,
   type = "page",
 }: IProps) {
   const downvotes = votes.filter((vote) => vote.vote === "DOWNVOTE");
@@ -228,7 +231,11 @@ export default function Item({
         )}
 
         <div className="flex items-center justify-between">
-          <VoteControls collectionId={id} currentVote={currentVote} />
+          <VoteControls
+            collectionId={id}
+            currentVote={currentVote}
+            theme={settings?.theme}
+          />
         </div>
       </div>
     </div>

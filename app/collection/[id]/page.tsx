@@ -1,5 +1,6 @@
 import { BackButton } from "@/components";
 import { Item } from "@/components/collection/item";
+import { getUserSettings } from "@/lib/server";
 import {
   type Collection,
   getCollection,
@@ -11,6 +12,7 @@ export default async function CollectionItem({
   params,
 }: CustomNextPage<{ id: string }>) {
   const { collection } = await getCollection();
+  const settings = await getUserSettings();
 
   const collectionItemOnCache = collection.find(
     (item) => item.id === params?.id
@@ -24,7 +26,7 @@ export default async function CollectionItem({
       <BackButton />
 
       <div className="flex-1 max-h-[82vh]">
-        <Item item={collectionItem} />
+        <Item item={collectionItem} settings={settings} />
       </div>
     </div>
   );

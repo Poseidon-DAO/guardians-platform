@@ -101,23 +101,37 @@ export default function VoteControls({
     return <>{children}</>;
   }
 
+  const isLightTheme = theme === "light";
+
   return renderWithTooltip(
     !user?.isGuardian ? "You must be a Guardian in order to vote!" : "",
-    <div className="flex">
+    <div
+      className="flex"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+    >
       <div className="mr-2">
         {renderWithTooltip(
           isCurrentDownvote ? "Remove vote" : "Down-vote",
           <Button
             size={size}
-            intent={theme === "light" ? "outline" : "contained"}
-            colorScheme={theme === "light" ? "blue" : "indigo"}
+            intent={
+              !isLightTheme
+                ? "contained"
+                : isCurrentDownvote
+                ? "contained"
+                : "outline"
+            }
+            colorScheme={isLightTheme ? "blue" : "indigo"}
             onClick={handleDrop}
             disabled={!user?.isGuardian}
             isLoading={isDownvoteLoading}
             className={
               isCurrentDownvote
-                ? "bg-blue/10 font-extrabold dark:bg-darkBorder dark:border-2"
-                : "font-medium dark:border-2 dark:border-darkBorder dark:bg-inherit"
+                ? "font-extrabold dark:bg-darkBorder dark:border-2"
+                : "font-medium dark:border-darkBorder dark:bg-inherit"
             }
           >
             <div className="flex items-center">
@@ -126,7 +140,7 @@ export default function VoteControls({
                 height={isCurrentDownvote ? 20 : 18}
                 className={`mr-2 ${
                   isCurrentDownvote
-                    ? "fill-current stroke-white dark:stroke-darkBorder"
+                    ? "fill-current stroke-blue dark:stroke-darkBorder"
                     : ""
                 }`}
               />
@@ -141,15 +155,21 @@ export default function VoteControls({
           isCurrentUpvote ? "Remove vote" : "Up-vote",
           <Button
             size={size}
-            intent={theme === "light" ? "outline" : "contained"}
-            colorScheme={theme === "light" ? "blue" : "indigo"}
+            intent={
+              !isLightTheme
+                ? "contained"
+                : isCurrentUpvote
+                ? "contained"
+                : "outline"
+            }
+            colorScheme={isLightTheme ? "blue" : "indigo"}
             onClick={handleHold}
             disabled={!user?.isGuardian}
             isLoading={isUpvoteLoading}
             className={
               isCurrentUpvote
-                ? "bg-blue/10 font-extrabold dark:bg-darkBorder dark:border-2"
-                : "font-medium dark:border-2 dark:border-darkBorder dark:bg-inherit"
+                ? "font-extrabold dark:bg-darkBorder"
+                : "font-medium dark:border-darkBorder dark:bg-inherit"
             }
           >
             <div className="flex items-center">
@@ -158,7 +178,7 @@ export default function VoteControls({
                 height={isCurrentUpvote ? 20 : 18}
                 className={`mr-2 ${
                   isCurrentUpvote
-                    ? "fill-current stroke-white dark:stroke-darkBorder"
+                    ? "fill-current stroke-blue dark:stroke-darkBorder"
                     : ""
                 }`}
               />
