@@ -1,12 +1,7 @@
 "use client";
 
 import "@rainbow-me/rainbowkit/styles.css";
-import {
-  lightTheme,
-  getDefaultWallets,
-  RainbowKitProvider,
-  Theme,
-} from "@rainbow-me/rainbowkit";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import {
   WagmiConfig,
   createClient,
@@ -39,18 +34,6 @@ const wagmiClient = createClient({
   provider,
 });
 
-const theme: Theme = {
-  ...lightTheme({
-    accentColor: "#f20a70",
-    accentColorForeground: "white",
-    fontStack: "system",
-    borderRadius: "medium",
-  }),
-  fonts: {
-    body: "ubuntu-mono,Ubuntu,sans-serif",
-  },
-};
-
 const queryClient = new QueryClient();
 
 interface IProps extends React.PropsWithChildren {}
@@ -59,7 +42,11 @@ export function Providers({ children }: IProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains} theme={theme} modalSize="compact">
+        <RainbowKitProvider
+          appInfo={{ appName: "PDN Guardians" }}
+          chains={chains}
+          modalSize="compact"
+        >
           {children}
         </RainbowKitProvider>
       </WagmiConfig>

@@ -26,7 +26,6 @@ export default function ProfilePopover({ theme }: IProps) {
           intent="contained"
           colorScheme={theme === "light" ? "white" : "indigo"}
           size="small"
-          className="input !w-10 !h-10 flex justify-center items-center"
         >
           <div className="border-2 border-background dark:border-white rounded-full">
             <User className="text-background dark:text-white" size={18} />

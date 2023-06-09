@@ -19,7 +19,7 @@ export default async function Collection({
 
   return (
     <div className="w-full min-h-[92vh] flex flex-col justify-between">
-      <div className="sticky top-[8vh] z-[1] bg-line dark:bg-background mt-3 pt-3 px-6 shadow-sm">
+      <div className="sticky top-[8vh] z-[1] bg-line dark:bg-background mt-3 pt-3 px-6 shadow-sm dark:shadow-darkBorder">
         <Header
           settings={settings}
           resultsCount={totalCount}

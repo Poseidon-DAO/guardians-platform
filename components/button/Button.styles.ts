@@ -61,7 +61,8 @@ export const classes = cva(
       {
         intent: "contained",
         colorScheme: "indigo",
-        className: "bg-background hover:bg-background/90",
+        className:
+          "bg-background hover:bg-background/90 dark:border-darkBorder",
       },
       {
         intent: "outline",
@@ -71,12 +72,12 @@ export const classes = cva(
       {
         intent: "contained",
         colorScheme: "white",
-        className: "bg-white text-background hover:bg-line",
+        className: "bg-white text-current",
       },
       {
         intent: "outline",
         colorScheme: "white",
-        className: "border-line text-background",
+        className: "border-white text-current",
       },
     ],
     defaultVariants: {
