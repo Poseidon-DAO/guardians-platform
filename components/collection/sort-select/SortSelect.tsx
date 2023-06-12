@@ -63,7 +63,7 @@ export default function SortSelect(props: IProps) {
             <ChevronUp />
           </Select.ScrollUpButton>
 
-          <Select.Viewport className="p-[5px]">
+          <Select.Viewport className="p-[8px]">
             <Select.Group>
               <Select.Label className="px-[25px] text-xs py-2 leading-[25px] text-background/60 dark:text-white/60">
                 Popularity

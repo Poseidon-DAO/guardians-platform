@@ -1,9 +1,14 @@
-import { Text, ConnectButton } from "@/components";
 import Image from "next/image";
+import { cookies } from "next/headers";
+import { Text, ConnectButton } from "@/components";
+import { getUserSettings } from "@/lib/server";
 
 import hero from "../public/hero.png";
 
-export default function Index() {
+export default async function Index() {
+  const userSettings = await getUserSettings();
+  const isConnected = !!cookies().get("userId")?.value;
+
   return (
     <div className="w-full h-screen relative bg-background mt-[-8vh]">
       <div className="container mx-auto h-full flex justify-between items-center">
@@ -22,7 +27,10 @@ export default function Index() {
           </div>
 
           <div className="my-6">
-            <ConnectButton />
+            <ConnectButton
+              theme={userSettings?.theme}
+              hasUserSession={isConnected}
+            />
           </div>
         </div>
       </div>

@@ -61,8 +61,8 @@ export default async function ItemCard({
           <VoteControls
             collectionId={id}
             currentVote={currentVote}
-            size={settings.collectionLayout === "grid" ? "medium" : "small"}
-            theme={settings.theme}
+            size={settings?.collectionLayout === "grid" ? "medium" : "small"}
+            theme={settings?.theme}
           />
         </div>
 

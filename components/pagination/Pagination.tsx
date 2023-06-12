@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "react-feather";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
-import { Button } from "@/components";
+import { Button } from "@/components/ui";
 import { createQueryString } from "@/utils/utils/url";
 import { usePagination } from "@/hooks";
 

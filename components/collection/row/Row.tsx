@@ -26,8 +26,8 @@ export default async function Row({
 
   return (
     <Link href={`/collection/${id}`}>
-      <div className="bg-white dark:bg-background overflow-hidden p-4 flex items-center rounded-lg dark:border-[1.5px] border-[1.5px] border-line dark:border-darkBorder my-4">
-        <div className="relative w-80 mr-16 h-52 border-[1.5px] border-line dark:border-darkBorder rounded-lg bg-line dark:bg-darkBorder">
+      <div className="bg-white dark:bg-background overflow-hidden p-4 m-6 mt-0 flex items-center rounded-lg dark:border-[1.5px] border-[1.5px] border-line dark:border-darkBorder">
+        <div className="relative w-80 mr-16 h-52 border-[1.5px] border-line dark:border-darkBorder rounded-lg bg-line dark:bg-darkPopover">
           <Image
             fill
             src={image}
@@ -46,7 +46,7 @@ export default async function Row({
             collectionId={id}
             currentVote={currentVote}
             size="small"
-            theme={settings.theme}
+            theme={settings?.theme}
           />
         </div>
       </div>

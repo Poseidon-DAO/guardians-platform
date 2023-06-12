@@ -16,7 +16,7 @@ export default async function CollectionItemModal({
   const settings = await getUserSettings();
 
   const collectionItemOnCache = collection.find(
-    (item) => item.id === params?.id
+    (item) => item?.id === params?.id
   ) as Collection;
 
   const collectionItem =

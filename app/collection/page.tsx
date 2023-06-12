@@ -28,8 +28,11 @@ export default async function Collection({
         />
       </div>
 
-      <div className="flex-1 p-6">
-        <Container collection={collection} layout={settings.collectionLayout} />
+      <div className="flex-1">
+        <Container
+          collection={collection}
+          layout={settings?.collectionLayout}
+        />
       </div>
 
       {totalCount > 0 && (

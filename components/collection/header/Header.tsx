@@ -40,7 +40,7 @@ export default function Header({
         </div>
 
         <div className="w-full h-12 col-span-2">
-          <ViewToggle layout={settings.collectionLayout} />
+          <ViewToggle layout={settings?.collectionLayout} />
         </div>
       </div>
 
@@ -56,7 +56,7 @@ export default function Header({
             hasSearchParams ? "col-span-2" : "col-span-10"
           }`}
         >
-          <ShowMyVotes checked={settings.showVotedCollection} />
+          <ShowMyVotes checked={settings?.showVotedCollection} />
         </div>
 
         <div className="w-full h-12 col-span-2 flex items-center justify-end">

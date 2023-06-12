@@ -26,7 +26,7 @@ export default async function RootLayout({ children, modal }: IProps) {
         <Providers>
           <Header theme={userSettings?.theme} isConnected={isConnected} />
           <div className="min-h-[100vh] pt-[8vh]">{children}</div>
-          {modal}
+          {/* {modal} */}
         </Providers>
       </body>
     </html>

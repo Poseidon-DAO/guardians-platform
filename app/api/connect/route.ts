@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   const backendData = await backendRes.json();
 
   // @ts-ignore
-  cookies().set("userId", backendData.user.id);
+  cookies().set("userId", backendData?.user?.id);
 
-  return NextResponse.json(backendData.user);
+  return NextResponse.json(backendData?.user);
 }

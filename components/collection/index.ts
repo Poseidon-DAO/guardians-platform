@@ -10,4 +10,5 @@ export * from "./results";
 export * from "./row";
 export * from "./sort-select";
 export * from "./table";
+export * from "./table-header";
 export * from "./view-toggle";

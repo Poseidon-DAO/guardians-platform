@@ -24,7 +24,7 @@ export default function SwitchTheme({ theme = "light" }: IProps) {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center py-3 pl-[25px] pr-[10px] rounded-lg hover:bg-blue hover:text-white dark:hover:bg-darkBorder">
       <div className="pr-4">
         <Moon />
       </div>

@@ -58,7 +58,7 @@ export default function PlatformSelect(props: IProps) {
             <ChevronUp />
           </Select.ScrollUpButton>
 
-          <Select.Viewport className="p-[5px]">
+          <Select.Viewport className="p-[8px]">
             <Select.Group>
               {options.map(({ label, value }) => (
                 <SelectItem key={label} value={value}>

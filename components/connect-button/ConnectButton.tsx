@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import Image from "next/image";
+import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ConnectButton as RainbowConnectButton } from "@rainbow-me/rainbowkit";
 import { type ConnectorData, useAccount } from "wagmi";
@@ -19,7 +19,10 @@ interface IProps {
   hasUserSession?: boolean;
 }
 
-export default function ConnectButton({ theme, hasUserSession }: IProps) {
+export default function ConnectButton({
+  theme = "light",
+  hasUserSession,
+}: IProps) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -114,15 +117,15 @@ export default function ConnectButton({ theme, hasUserSession }: IProps) {
             {(() => {
               if (!connected) {
                 return (
-                  <Button size="small" onClick={openConnectModal} type="button">
+                  <Button onClick={openConnectModal} type="button">
                     Connect Wallet
                   </Button>
                 );
               }
 
-              if (chain.unsupported) {
+              if (chain?.unsupported) {
                 return (
-                  <Button size="small" onClick={openChainModal} type="button">
+                  <Button onClick={openChainModal} type="button">
                     Wrong network
                   </Button>
                 );
@@ -131,18 +134,17 @@ export default function ConnectButton({ theme, hasUserSession }: IProps) {
               return (
                 <div className="flex gap-3 h-full">
                   <Button
-                    size="small"
                     onClick={openChainModal}
                     className="flex items-center"
                     type="button"
                     colorScheme={theme === "light" ? "white" : "indigo"}
                   >
-                    {chain.hasIcon && (
+                    {chain?.hasIcon && (
                       <div
                         className={`w-3 h-3 rounded-full hidden mr-1`}
-                        style={{ background: chain.iconBackground }}
+                        style={{ background: chain?.iconBackground }}
                       >
-                        {chain.iconUrl && (
+                        {chain?.iconUrl && (
                           <Image
                             src={chain.iconUrl}
                             width="12"
@@ -152,11 +154,10 @@ export default function ConnectButton({ theme, hasUserSession }: IProps) {
                         )}
                       </div>
                     )}
-                    {chain.name}
+                    {chain?.name}
                   </Button>
 
                   <Button
-                    size="small"
                     onClick={openAccountModal}
                     type="button"
                     colorScheme={theme === "light" ? "white" : "indigo"}

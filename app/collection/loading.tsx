@@ -6,7 +6,7 @@ import { getUserSettings } from "@/lib/server";
 export default async function CollectionSkeleton() {
   const settings = await getUserSettings();
 
-  const columns = settings.collectionLayout === "grid" ? 3 : 5;
+  const columns = settings?.collectionLayout === "grid" ? 3 : 5;
 
   return (
     <div className="w-screen h-screen">

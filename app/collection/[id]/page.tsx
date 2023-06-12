@@ -15,7 +15,7 @@ export default async function CollectionItem({
   const settings = await getUserSettings();
 
   const collectionItemOnCache = collection.find(
-    (item) => item.id === params?.id
+    (item) => item?.id === params?.id
   ) as Collection;
 
   const collectionItem =

@@ -89,7 +89,7 @@ export default function Search(props: IProps) {
       </form>
 
       {popoverOpen && (
-        <div className="absolute top-full left-0 w-full z-20 overflow-hidden bg-white dark:bg-darkPopover rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] mt-2 p-[5px]">
+        <div className="absolute top-full left-0 w-full z-20 overflow-hidden bg-white dark:bg-darkPopover rounded-lg shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] mt-2 p-[8px]">
           {!!suggestions?.length && (
             <Text className="px-[10px] py-2 text-right" size="small">
               {suggestions.length} results found for{" "}

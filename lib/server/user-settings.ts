@@ -22,7 +22,7 @@ export async function getUserSettings() {
   url.searchParams.append("userId", userId!);
 
   const res = await fetch(url.toString(), { cache: "no-cache" });
-  if (!res.ok) throw new Error(res.statusText);
+  if (!res.ok) return;
   const settings = (await res.json()) as UserSettings;
 
   return settings;

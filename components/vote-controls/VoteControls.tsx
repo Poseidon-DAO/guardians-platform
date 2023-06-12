@@ -9,7 +9,7 @@ import useRevalidate from "@/lib/client/useRevalidate";
 import { useUserStore } from "@/zustand/user";
 import { type Vote } from "@/lib/server";
 
-import { Button, Text, Tooltip } from "../ui";
+import { Text, Tooltip, Button } from "../ui";
 import { type ThemeTypes } from "../switch-theme/SwitchTheme";
 
 interface IProps extends React.PropsWithChildren {

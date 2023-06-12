@@ -18,7 +18,7 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
       colorScheme,
       className,
       children,
-      disabled,
+      disabled = false,
       isLoading = false,
       ...props
     },
