@@ -12,6 +12,12 @@ export type UserSettings = {
   updatedAt: Date;
 };
 
+export type DefaultUserSettings = {
+  theme: "light";
+  collectionLayout: "big-grid";
+  showVotedCollection: false;
+};
+
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
 export async function getUserSettings() {
@@ -22,7 +28,13 @@ export async function getUserSettings() {
   url.searchParams.append("userId", userId!);
 
   const res = await fetch(url.toString(), { cache: "no-cache" });
-  if (!res.ok) return;
+  if (!res.ok) {
+    return {
+      theme: "light",
+      collectionLayout: "big-grid",
+      showVotedCollection: false,
+    } as DefaultUserSettings;
+  }
   const settings = (await res.json()) as UserSettings;
 
   return settings;

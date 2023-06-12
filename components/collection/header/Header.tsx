@@ -1,4 +1,7 @@
-import { type UserSettings } from "@/lib/server/user-settings";
+import {
+  type DefaultUserSettings,
+  type UserSettings,
+} from "@/lib/server/user-settings";
 import { type CustomNextPage } from "@/types";
 
 import { ClearFilters } from "../clear-filters";
@@ -12,7 +15,7 @@ import { ViewToggle } from "../view-toggle";
 interface IProps extends React.PropsWithChildren {
   resultsCount: number;
   searchParams: CustomNextPage["searchParams"];
-  settings: UserSettings;
+  settings: UserSettings | DefaultUserSettings;
   viewed: number;
 }
 
