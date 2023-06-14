@@ -3,7 +3,7 @@
 import * as Popover from "@radix-ui/react-popover";
 import Link from "next/link";
 import { useState } from "react";
-import { BarChart, Box, User } from "react-feather";
+import { BarChart, Briefcase, Box, User } from "react-feather";
 
 import SwitchTheme, { type ThemeTypes } from "../switch-theme/SwitchTheme";
 
@@ -15,6 +15,7 @@ interface IProps {
 
 const menuOptions = [
   { icon: BarChart, label: "Analytics", linkTo: "/analytics" },
+  { icon: Briefcase, label: "Collection", linkTo: "/collection" },
   { icon: Box, label: "My votes", linkTo: "/my-votes" },
 ];
 
@@ -40,8 +41,12 @@ export default function ProfilePopover({ theme }: IProps) {
           intent="contained"
           colorScheme={theme === "light" ? "white" : "indigo"}
         >
-          <div className="border-2 border-background dark:border-white rounded-full">
-            <User className="text-background dark:text-white" size={18} />
+          <div className="border-[3px] border-background dark:border-white rounded-full">
+            <User
+              className="text-background dark:text-white"
+              size={18}
+              strokeWidth="3"
+            />
           </div>
         </Button>
       </Popover.Trigger>

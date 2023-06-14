@@ -22,8 +22,8 @@ export const classes = cva(
         text: "bg-transparent hover:bg-gray-200 border-transparent",
       },
       size: {
-        small: "text-md py-1 px-2",
-        medium: "text-lg px-6 py-2",
+        small: "text-md px-2 py-1",
+        medium: "text-lg px-4 py-[0.35rem]",
         large: "text-xlg px-8 py-4",
       },
       colorScheme: {

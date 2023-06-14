@@ -30,50 +30,78 @@ export type Collection = {
   votes: Vote[];
 };
 
+type CollectionResponse = {
+  collection: Collection[];
+  pageCount: number;
+  pageSize: number;
+  totalCount: number;
+};
+
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
 export async function getCollectionItem(collectionId: string) {
-  const url = new URL(`/collection/${collectionId}`, baseUrl);
+  try {
+    const url = new URL(`/collection/${collectionId}`, baseUrl);
 
-  const res = await fetch(url.toString());
-  if (!res.ok) throw new Error(res.statusText);
-  const collectionItem = (await res.json()) as Collection;
+    const res = await fetch(url.toString());
+    if (!res.ok) throw new Error(res.statusText);
+    const collectionItem = (await res.json()) as Collection;
 
-  return collectionItem;
+    return collectionItem;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function getCollection(
   searchParams?: CustomNextPage["searchParams"]
 ) {
-  const url = new URL("/collection", baseUrl);
+  try {
+    const url = new URL("/collection", baseUrl);
 
-  if (searchParams) {
-    Object.keys(searchParams).forEach((key) => {
-      const value = searchParams[key];
+    if (searchParams) {
+      Object.keys(searchParams).forEach((key) => {
+        const value = searchParams[key];
 
-      if (Array.isArray(value)) {
-        value.forEach((v) => url.searchParams.append(key, v));
-      } else if (value !== undefined) {
-        url.searchParams.append(key, value);
-      }
+        if (Array.isArray(value)) {
+          value.forEach((v) => url.searchParams.append(key, v));
+        } else if (value !== undefined) {
+          url.searchParams.append(key, value);
+        }
+      });
+    }
+
+    const userId = cookies().get("userId")?.value;
+
+    if (!userId) {
+      return {
+        collection: [],
+        pageCount: 0,
+        pageSize: 0,
+        totalCount: 0,
+      };
+    }
+
+    url.searchParams.append("userId", userId as string);
+
+    const res = await fetch(url.toString(), {
+      cache: "force-cache",
+      next: { tags: ["collection"] },
     });
+
+    if (!res.ok) {
+      return {
+        collection: [],
+        pageCount: 0,
+        pageSize: 0,
+        totalCount: 0,
+      };
+    }
+
+    const collection = (await res.json()) as CollectionResponse;
+
+    return collection;
+  } catch (error) {
+    console.error(error);
   }
-
-  const userId = cookies().get("userId")?.value;
-  url.searchParams.append("userId", userId as string);
-
-  const res = await fetch(url.toString(), {
-    cache: "force-cache",
-    next: { tags: ["collection"] },
-  });
-
-  if (!res.ok) throw new Error(res.statusText);
-  const collection = (await res.json()) as {
-    collection: Collection[];
-    pageCount: number;
-    pageSize: number;
-    totalCount: number;
-  };
-
-  return collection;
 }

@@ -6,7 +6,12 @@ export function middleware(request: NextRequest) {
 
   const isConnected = request.cookies.get("userId")?.value;
 
-  if (pathname.startsWith("/collection") && !isConnected) {
+  if (
+    (pathname.startsWith("/analytics") ||
+      pathname.startsWith("/collection") ||
+      pathname.startsWith("/my-votes")) &&
+    !isConnected
+  ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 

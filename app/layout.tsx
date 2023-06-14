@@ -23,7 +23,7 @@ export default async function RootLayout({ children, modal }: IProps) {
   return (
     <html lang="en" className={userSettings?.theme === "dark" ? "dark" : ""}>
       <body className="bg-line dark:bg-background">
-        <Providers>
+        <Providers theme={userSettings?.theme}>
           <Header theme={userSettings?.theme} isConnected={isConnected} />
           <div className="min-h-[100vh] pt-[8vh]">{children}</div>
           {modal}

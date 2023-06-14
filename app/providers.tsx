@@ -1,7 +1,15 @@
 "use client";
 
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+
+import merge from "lodash.merge";
+import {
+  darkTheme,
+  getDefaultWallets,
+  lightTheme,
+  RainbowKitProvider,
+  Theme,
+} from "@rainbow-me/rainbowkit";
 import {
   WagmiConfig,
   createClient,
@@ -11,6 +19,12 @@ import {
 } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { alchemyProvider } from "wagmi/providers/alchemy";
+
+import { type ThemeTypes } from "@/components/switch-theme/SwitchTheme";
+
+interface IProps extends React.PropsWithChildren {
+  theme?: ThemeTypes;
+}
 
 const chainFromEnv = process.env.NEXT_PUBLIC_CHAIN_ID as "0x1" | "0x5";
 const chainToUse = {
@@ -36,9 +50,17 @@ const wagmiClient = createClient({
 
 const queryClient = new QueryClient();
 
-interface IProps extends React.PropsWithChildren {}
+export function Providers({ children, theme }: IProps) {
+  const myTheme =
+    theme === "dark"
+      ? merge(darkTheme(), {
+          colors: { modalBackground: "#1e293b" },
+          radii: { modal: "0.5rem" },
+        } as Theme)
+      : merge(lightTheme(), {
+          radii: { modal: "0.5rem" },
+        });
 
-export function Providers({ children }: IProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <WagmiConfig client={wagmiClient}>
@@ -46,6 +68,7 @@ export function Providers({ children }: IProps) {
           appInfo={{ appName: "PDN Guardians" }}
           chains={chains}
           modalSize="compact"
+          theme={myTheme}
         >
           {children}
         </RainbowKitProvider>

@@ -8,7 +8,7 @@ export default function TableHeader() {
 
   return (
     <div
-      className={`sticky w-screen top-[calc(8vh+108px)] z-50 py-2 my-2 px-10 flex items-center justify-between font-light ${
+      className={`sticky w-screen top-[calc(8vh+108px)] z-10 py-2 my-2 px-10 flex items-center justify-between font-light ${
         scrollPosition > 20
           ? "bg-line dark:bg-darkBorder dark:text-white shadow-sm"
           : ""

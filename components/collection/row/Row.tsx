@@ -32,7 +32,7 @@ export default async function Row({
             fill
             src={image}
             alt={description}
-            className="object-contain rounded-lg transition transform duration-500 hover:scale-105"
+            className="object-contain rounded-lg"
             sizes="20rem"
           />
         </div>

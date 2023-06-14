@@ -21,21 +21,35 @@ export type DefaultUserSettings = {
 const baseUrl = process.env.NEXT_PUBLIC_PDN_API_BASE_URL!;
 
 export async function getUserSettings() {
-  const userId = cookies().get("userId")?.value;
+  try {
+    const userId = cookies().get("userId")?.value;
 
-  const url = new URL("/user/settings", baseUrl);
+    if (!userId) {
+      return {
+        theme: "light",
+        collectionLayout: "big-grid",
+        showVotedCollection: false,
+      } as DefaultUserSettings;
+    }
 
-  url.searchParams.append("userId", userId!);
+    const url = new URL("/user/settings", baseUrl);
 
-  const res = await fetch(url.toString(), { cache: "no-cache" });
-  if (!res.ok) {
-    return {
-      theme: "light",
-      collectionLayout: "big-grid",
-      showVotedCollection: false,
-    } as DefaultUserSettings;
+    url.searchParams.append("userId", userId!);
+
+    const res = await fetch(url.toString(), { cache: "no-cache" });
+
+    if (!res.ok) {
+      return {
+        theme: "light",
+        collectionLayout: "big-grid",
+        showVotedCollection: false,
+      } as DefaultUserSettings;
+    }
+
+    const settings = (await res.json()) as UserSettings;
+
+    return settings;
+  } catch (error) {
+    console.error(error);
   }
-  const settings = (await res.json()) as UserSettings;
-
-  return settings;
 }
