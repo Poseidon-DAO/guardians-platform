@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+
+.input {
+  @apply rounded-lg bg-white dark:bg-background dark:border-[1.5px] dark:border-darkBorder font-medium shadow-[0_2px_10px] shadow-black/10 focus:shadow-[0_0_0_2px] focus:shadow-background outline-none;
+}
+
+@tailwind utilities;
+
+:root {
+  --sidebar-width: 26rem;
+}
+
+@layer base {
+  html {
+    font-family: Ubuntu;
+    color: #1f2046;
+  }
+
+  html.dark {
+    color: white;
+  }
+}
