@@ -66,7 +66,7 @@ export default async function TrendingTable({ trend }: IProps) {
                   </div>
                 </div>
 
-                <div className="w-auto mx-2">
+                <div className="w-auto ml-2">
                   <Link href={`/collection/${id}`}>
                     <Button
                       size="small"

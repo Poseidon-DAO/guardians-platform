@@ -25,7 +25,10 @@ export default function Header({
   settings,
   viewed,
 }: IProps) {
-  const hasSearchParams = !!searchParams && !!Object.keys(searchParams).length;
+  const hasSearchParams =
+    !!searchParams &&
+    !!Object.keys(searchParams).length &&
+    (searchParams["sort"] || searchParams["platform"]);
 
   return (
     <div>

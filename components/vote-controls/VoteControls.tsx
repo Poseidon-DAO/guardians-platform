@@ -112,7 +112,11 @@ export default function VoteControls({
     >
       <div className="mr-2">
         {renderWithTooltip(
-          isCurrentDownvote ? "Remove vote" : "Down-vote",
+          !user?.isGuardian
+            ? ""
+            : isCurrentDownvote
+            ? "Remove vote"
+            : "Down-vote",
           <Button
             size={size}
             intent={
@@ -150,7 +154,7 @@ export default function VoteControls({
 
       <div className="mr-2">
         {renderWithTooltip(
-          isCurrentUpvote ? "Remove vote" : "Up-vote",
+          !user?.isGuardian ? "" : isCurrentUpvote ? "Remove vote" : "Up-vote",
           <Button
             size={size}
             intent={

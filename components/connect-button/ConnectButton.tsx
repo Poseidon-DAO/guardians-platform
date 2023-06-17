@@ -54,9 +54,11 @@ export default function ConnectButton({
         return;
       }
 
+      router.refresh();
       registerOrLogin(address as string);
     },
     onDisconnect() {
+      router.refresh();
       logout();
     },
   });
@@ -64,6 +66,7 @@ export default function ConnectButton({
   useEffect(() => {
     function onAccountChange({ account }: ConnectorData) {
       if (account) {
+        window.location.reload();
         registerOrLogin(account);
       }
     }
